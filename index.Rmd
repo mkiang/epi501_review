@@ -11,5 +11,5 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Table of Contents
 
-- January 27th, 2017 -- [Introduction to ODEs in R](./jan27-intro-to-odes/index.html)
+- January 27th, 2017 -- [Introduction to ODEs in R](./jan27-intro-to-odes/index.html) [[PDF](./jan25-intro-to-r/assets/jan25-intro-to-r.pdf)]
 - January 25th, 2017 -- [Introduction to R](./jan25-intro-to-r/index.html)
