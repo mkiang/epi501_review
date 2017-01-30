@@ -1,0 +1,15 @@
+---
+title: "EPI 501 Dynamics of Infectious Disease (Review)"
+author: "Mathew Kiang"
+date: "1/30/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Table of Contents
+
+- January 27th, 2017 -- [Introduction to ODEs in R](./jan27-intro-to-odes/index.html)
+- January 25th, 2017 -- [Introduction to R](./jan25-intro-to-r/index.html)
