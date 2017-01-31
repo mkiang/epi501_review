@@ -11,11 +11,22 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Table of Contents (reverse chronological)
 
-- Week 2 (February 3, 2017 lab)
-    - Measles worksheet [coming soon]
+- Week 2 (February 3, 2017 lab) 
+    - [Measles worksheet](./jan30-timesteps-measles-seir/index.html) [[PDF](./jan30-timesteps-measles-seir/measles-handout.pdf)] | [[Code](https://github.com/mkiang/epi501_review/tree/master/jan30-timesteps-measles-seir/code)]
+        - [Measles SIR](./jan30-timesteps-measles-seir/index.html#4)
+        - [Time-steps are arbitrary](./jan30-timesteps-measles-seir/index.html#12)
+        - [Chickenpox and mumps](./jan30-timesteps-measles-seir/index.html#18)
+        - [Plot multiple things](./jan30-timesteps-measles-seir/index.html#23)
+        - [Find max infections](./jan30-timesteps-measles-seir/index.html#29)
+        - [Boolean vectors](./jan30-timesteps-measles-seir/index.html#45)
+        - [SEIR models](./jan30-timesteps-measles-seir/index.html#54)
+        - [Open SEIR models](./jan30-timesteps-measles-seir/index.html#68)
+        - [Plotting subsets](./jan30-timesteps-measles-seir/index.html#54)
+        - [What is a for-loop](./jan30-timesteps-measles-seir/index.html#79)
+        - [How birth/death rate affects I](./jan30-timesteps-measles-seir/index.html#98)
 
 - Week 1 (January 27, 2017 lab) 
-    - [Introduction to ODEs in R](./jan27-intro-to-odes/index.html)  [[PDF](./jan25-intro-to-r/assets/jan25-intro-to-r.pdf)] | [[Code](https://github.com/mkiang/epi501_review/tree/master/jan27-intro-to-odes/code)]
+    - [Introduction to ODEs in R](./jan27-intro-to-odes/index.html)  [[PDF](./jan27-intro-to-odes/jan27-intro-to-r.pdf)] | [[Code](https://github.com/mkiang/epi501_review/tree/master/jan27-intro-to-odes/code)]
         - [SIR model line-by-line](./jan27-intro-to-odes/index.html#13)
         - [Plotting simulations](./jan27-intro-to-odes/index.html#58)
         - [Make an SI model](./jan27-intro-to-odes/index.html#68)

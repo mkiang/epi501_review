@@ -2,7 +2,7 @@
 title: "Review: ODEs in R"
 subtitle: "Like Wednesday — But Slower"
 author: "Mathew Kiang"
-date: "2016/1/27"
+date: "2017/1/27"
 output:
   xaringan::moon_reader:
     css: "slides_style.css"
@@ -11,7 +11,6 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
-      
 ---
 
 ```{r setup, include=FALSE}
