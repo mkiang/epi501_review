@@ -283,7 +283,7 @@ inits <- c(S = 499, I = 1, R = 0)
 dt <- seq(0, 300, 1)
 
 {{SIR <- function(t, x, parms){}}
-{{   with(as.list(c(parms, x)), {}}
+{{ }}  with(as.list(c(parms, x)), {
 *
 {{       dS <- - (beta * k * S * I) / (S + I + R)}}
 {{       dI <- + (beta * k * S * I) / (S + I + R) - r * I}}
