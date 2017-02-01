@@ -295,13 +295,13 @@ dt &lt;- seq(0, 300, 1)
 
 *SIR &lt;- function(t, x, parms){
 *   with(as.list(c(parms, x)), {
-* 
+*
 *       dS &lt;- - (beta * k * S * I) / (S + I + R)
 *       dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
 *       dR &lt;- r * I
-* 
+*
 *       der &lt;- c(dS, dI, dR)
-* 
+*
 *       return(list(der))
 *   }) 
 *}
@@ -580,7 +580,7 @@ SIR &lt;- function(t, x, parms){
 }
 
 *simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
-*                                 func = SIR, parms = parms))
+*                                func = SIR, parms = parms))
 ```
 --
 
@@ -755,7 +755,7 @@ dt &lt;- seq(0, 300, 1)
 }
 
 *simulation &lt;- as.data.frame(ode(y = inits, times = dt,
-*                               func = SIR, parms = parms))
+*                              func = SIR, parms = parms))
 ```
 What needs to be modified?
 
@@ -801,7 +801,7 @@ SI &lt;- function(t, x, parms){
 *       N &lt;- S + I 
         dS &lt;- - (beta * k * S * I) / N}}
 *       dI &lt;- + (beta * k * S * I) / N
-* 
+*
     
 *       der &lt;- c(dS, dI)
        

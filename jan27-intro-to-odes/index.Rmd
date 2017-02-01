@@ -282,8 +282,8 @@ parms <- c(beta = 0.333, k = 3 , r = 0.333)
 inits <- c(S = 499, I = 1, R = 0)
 dt <- seq(0, 300, 1)
 
-{{SIR <- function(t, x, parms)}}{
-{{   with(as.list(c(parms, x))}}, {
+{{SIR <- function(t, x, parms){}}
+{{   with(as.list(c(parms, x)), {}}
 *
 {{       dS <- - (beta * k * S * I) / (S + I + R)}}
 {{       dI <- + (beta * k * S * I) / (S + I + R) - r * I}}
