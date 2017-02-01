@@ -549,7 +549,7 @@ max(sim_cpox$I)
 ```
 ---
 class: center, middle, inverse
-# Question 3
+# Question 4
 ## SEIR Models
 ---
 class: center, middle
@@ -608,7 +608,7 @@ SIR &lt;- function(t, x, parms){
 simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
                                 func = SIR, parms = parms))
 ```
-- Introduce a new parameter `a` which will represent the infected-but-not-infectious period.
+- Introduce a new parameter `a` be the rate from latent to infectious.
 --
 
 - If the duration of the latent period is 12 days, what is the rate per day?

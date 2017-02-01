@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Table of Contents (reverse chronological)
 
-- Week 2 (February 3, 2017 lab) 
+- Week 2 (February 3, 2017 lab) -- Revised 2/1/2017
     - [Measles worksheet](./jan30-timesteps-measles-seir/index.html) [[PDF](./jan30-timesteps-measles-seir/measles-handout.pdf)] | [[Code](https://github.com/mkiang/epi501_review/tree/master/jan30-timesteps-measles-seir/code)]
         - [Measles SIR](./jan30-timesteps-measles-seir/index.html#4)
         - [Time-steps are arbitrary](./jan30-timesteps-measles-seir/index.html#12)
@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = TRUE)
         - [What is a for-loop](./jan30-timesteps-measles-seir/index.html#79)
         - [How birth/death rate affects I](./jan30-timesteps-measles-seir/index.html#98)
 
-- Week 1 (January 27, 2017 lab) 
+- Week 1 (January 27, 2017 lab) -- Revised 2/1/2017
     - [Introduction to ODEs in R](./jan27-intro-to-odes/index.html)  [[PDF](./jan27-intro-to-odes/jan27-intro-to-r.pdf)] | [[Code](https://github.com/mkiang/epi501_review/tree/master/jan27-intro-to-odes/code)]
         - [SIR model line-by-line](./jan27-intro-to-odes/index.html#13)
         - [Plotting simulations](./jan27-intro-to-odes/index.html#58)

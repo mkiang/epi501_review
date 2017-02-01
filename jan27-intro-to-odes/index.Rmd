@@ -2,7 +2,7 @@
 title: "Review: ODEs in R"
 subtitle: "Like Wednesday — But Slower"
 author: "Mathew Kiang"
-date: "2017/1/27"
+date: "1/27/2017"
 output:
   xaringan::moon_reader:
     css: "slides_style.css"
@@ -34,7 +34,7 @@ class: center, middle, inverse
 ## Can you run this command with no errors?
 
 ```{r eval=FALSE}
- library(deSolve)
+library(deSolve)
 ```
 
 --
@@ -80,24 +80,24 @@ class: center, middle, inverse
 
 ---
 ```{r eval=FALSE}
- library(deSolve)
+library(deSolve)
 
- parms <- c(beta = 0.333, k = 3 , r = 0.333)
- inits <- c(S = 499, I = 1, R = 0)
- dt <- seq(0, 300, 1)
+parms <- c(beta = 0.333, k = 3 , r = 0.333)
+inits <- c(S = 499, I = 1, R = 0)
+dt <- seq(0, 300, 1)
 
- SIR <- function(t, x, parms){
-     with(as.list(c(parms, x)), {
-        
+SIR <- function(t, x, parms){
+    with(as.list(c(parms, x)), {
+    
         dS <- - (beta * k * S * I) / (S + I + R)
         dI <- + (beta * k * S * I) / (S + I + R) - r * I
         dR <- r * I
-
+    
         der <- c(dS, dI, dR)
         
-         return(list(der))
-     }) 
- }
+        return(list(der))
+    }) 
+}
 
 simulation <- as.data.frame(ode(y = inits, times = dt, 
                                 func = SIR, parms = parms))
@@ -110,24 +110,24 @@ It is up on Canvas under Code.
 
 ---
 ```{r eval=FALSE}
- library(deSolve)
+library(deSolve)
 
-* parms <- c(beta = 0.333, k = 3 , r = 0.333)
-* inits <- c(S = 499, I = 1, R = 0)
-* dt <- seq(0, 300, 1)
+{{parms <- c(beta = 0.333, k = 3 , r = 0.333)}}
+{{inits <- c(S = 499, I = 1, R = 0)}}
+{{dt <- seq(0, 300, 1)}}
 
- SIR <- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+SIR <- function(t, x, parms){
+    with(as.list(c(parms, x)), {
+    
+{{       dS <- - (beta * k * S * I) / (S + I + R)}}
+{{       dI <- + (beta * k * S * I) / (S + I + R) - r * I}}
+{{       dR <- r * I}}
         
-*       dS <- - (beta * k * S * I) / (S + I + R)
-*       dI <- + (beta * k * S * I) / (S + I + R) - r * I
-*       dR <- r * I
-
-*       der <- c(dS, dI, dR)
-        
-         return(list(der))
-     }) 
- }
+{{       der <- c(dS, dI, dR)}}
+    
+        return(list(der))
+    }) 
+}
 
 simulation <- as.data.frame(ode(y = inits, times = dt, 
                                 func = SIR, parms = parms))
@@ -139,24 +139,24 @@ You'll need to modify things that are highlighted
 We will give you the rest (most of it).
 ---
 ```{r eval=FALSE}
-* library(deSolve)
+{{library(deSolve)}}
 
- parms <- c(beta = 0.333, k = 3 , r = 0.333)
- inits <- c(S = 499, I = 1, R = 0)
- dt <- seq(0, 300, 1)
+parms <- c(beta = 0.333, k = 3 , r = 0.333)
+inits <- c(S = 499, I = 1, R = 0)
+dt <- seq(0, 300, 1)
 
- SIR <- function(t, x, parms){
-     with(as.list(c(parms, x)), {
-        
+SIR <- function(t, x, parms){
+    with(as.list(c(parms, x)), {
+    
         dS <- - (beta * k * S * I) / (S + I + R)
         dI <- + (beta * k * S * I) / (S + I + R) - r * I
         dR <- r * I
-
+    
         der <- c(dS, dI, dR)
         
-         return(list(der))
-     }) 
- }
+        return(list(der))
+    }) 
+}
 
 simulation <- as.data.frame(ode(y = inits, times = dt, 
                                 func = SIR, parms = parms))
@@ -165,24 +165,24 @@ simulation <- as.data.frame(ode(y = inits, times = dt,
 Just loads the `deSolve` library so you can use `ode()`
 ---
 ```{r eval=FALSE}
- library(deSolve)
+library(deSolve)
 
-* parms <- c(beta = 0.333, k = 3 , r = 0.333)
- inits <- c(S = 499, I = 1, R = 0)
- dt <- seq(0, 300, 1)
+{{parms <- c(beta = 0.333, k = 3 , r = 0.333)}}
+inits <- c(S = 499, I = 1, R = 0)
+dt <- seq(0, 300, 1)
 
- SIR <- function(t, x, parms){
-     with(as.list(c(parms, x)), {
-        
+SIR <- function(t, x, parms){
+    with(as.list(c(parms, x)), {
+    
         dS <- - (beta * k * S * I) / (S + I + R)
         dI <- + (beta * k * S * I) / (S + I + R) - r * I
         dR <- r * I
-
+    
         der <- c(dS, dI, dR)
         
-         return(list(der))
-     }) 
- }
+        return(list(der))
+    }) 
+}
 
 simulation <- as.data.frame(ode(y = inits, times = dt, 
                                 func = SIR, parms = parms))
@@ -201,24 +201,24 @@ You'll need to add/remove from `parms` as your model dictates
 
 ---
 ```{r eval=FALSE}
- library(deSolve)
+library(deSolve)
 
- parms <- c(beta = 0.333, k = 3 , r = 0.333)
-* inits <- c(S = 499, I = 1, R = 0)
- dt <- seq(0, 300, 1)
+parms <- c(beta = 0.333, k = 3 , r = 0.333)
+{{inits <- c(S = 499, I = 1, R = 0)}}
+dt <- seq(0, 300, 1)
 
- SIR <- function(t, x, parms){
-     with(as.list(c(parms, x)), {
-        
+SIR <- function(t, x, parms){
+    with(as.list(c(parms, x)), {
+    
         dS <- - (beta * k * S * I) / (S + I + R)
         dI <- + (beta * k * S * I) / (S + I + R) - r * I
         dR <- r * I
 
         der <- c(dS, dI, dR)
-        
-         return(list(der))
-     }) 
- }
+    
+        return(list(der))
+    }) 
+}
 
 simulation <- as.data.frame(ode(y = inits, times = dt, 
                                 func = SIR, parms = parms))
@@ -237,24 +237,24 @@ Again, you'll need to add/remove from `inits` as your model changes
 
 ---
 ```{r eval=FALSE}
- library(deSolve)
+library(deSolve)
 
- parms <- c(beta = 0.333, k = 3 , r = 0.333)
- inits <- c(S = 499, I = 1, R = 0)
-* dt <- seq(0, 300, 1)
+parms <- c(beta = 0.333, k = 3 , r = 0.333)
+inits <- c(S = 499, I = 1, R = 0)
+{{dt <- seq(0, 300, 1)}}
 
- SIR <- function(t, x, parms){
-     with(as.list(c(parms, x)), {
-        
+SIR <- function(t, x, parms){
+    with(as.list(c(parms, x)), {
+    
         dS <- - (beta * k * S * I) / (S + I + R)
         dI <- + (beta * k * S * I) / (S + I + R) - r * I
         dR <- r * I
 
         der <- c(dS, dI, dR)
-        
-         return(list(der))
-     }) 
- }
+    
+        return(list(der))
+    }) 
+}
 
 simulation <- as.data.frame(ode(y = inits, times = dt, 
                                 func = SIR, parms = parms))
@@ -276,24 +276,24 @@ However, more time-steps (and finer time-steps) requires longer computational ti
 
 ---
 ```{r eval=FALSE}
- library(deSolve)
+library(deSolve)
 
- parms <- c(beta = 0.333, k = 3 , r = 0.333)
- inits <- c(S = 499, I = 1, R = 0)
- dt <- seq(0, 300, 1)
+parms <- c(beta = 0.333, k = 3 , r = 0.333)
+inits <- c(S = 499, I = 1, R = 0)
+dt <- seq(0, 300, 1)
 
-* SIR <- function(t, x, parms){
-*     with(as.list(c(parms, x)), {
-*       
-*        dS <- - (beta * k * S * I) / (S + I + R)
-*        dI <- + (beta * k * S * I) / (S + I + R) - r * I
-*        dR <- r * I
-* 
-*       der <- c(dS, dI, dR)
-*       
-*         return(list(der))
-*     }) 
-* }
+{{SIR <- function(t, x, parms)}}{
+{{   with(as.list(c(parms, x))}}, {
+{{ }}
+{{       dS <- - (beta * k * S * I) / (S + I + R)}}
+{{       dI <- + (beta * k * S * I) / (S + I + R) - r * I}}
+{{       dR <- r * I}}
+{{ }}
+{{       der <- c(dS, dI, dR)}}
+{{ }}
+{{       return(list(der))}}
+{{   })}} 
+{{}}}
 
 simulation <- as.data.frame(ode(y = inits, times = dt, 
                                 func = SIR, parms = parms))
@@ -303,23 +303,23 @@ Wrap up your model as a function
 
 ---
 ```{r eval=FALSE}
- library(deSolve)
+library(deSolve)
 
- parms <- c(beta = 0.333, k = 3 , r = 0.333)
- inits <- c(S = 499, I = 1, R = 0)
- dt <- seq(0, 300, 1)
+parms <- c(beta = 0.333, k = 3 , r = 0.333)
+inits <- c(S = 499, I = 1, R = 0)
+dt <- seq(0, 300, 1)
 
-* SIR <- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+{{SIR <- function(t, x, parms)}}{
+    with(as.list(c(parms, x)), {
        
         dS <- - (beta * k * S * I) / (S + I + R)
         dI <- + (beta * k * S * I) / (S + I + R) - r * I
         dR <- r * I
  
-       der <- c(dS, dI, dR)
+        der <- c(dS, dI, dR)
        
-         return(list(der))
-     }) 
+        return(list(der))
+    }) 
 }
 
 simulation <- as.data.frame(ode(y = inits, times = dt, 
@@ -331,23 +331,23 @@ This `function` is named `SIR` and takes inputs `t`, `x`, `parms`
 
 ---
 ```{r eval=FALSE}
- library(deSolve)
+library(deSolve)
 
- parms <- c(beta = 0.333, k = 3 , r = 0.333)
- inits <- c(S = 499, I = 1, R = 0)
-* dt <- seq(0, 300, 1)
+parms <- c(beta = 0.333, k = 3 , r = 0.333)
+inits <- c(S = 499, I = 1, R = 0)
+{{dt <- seq(0, 300, 1)}}
 
-* SIR <- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+{{SIR <- function(t, x, parms)}}{
+    with(as.list(c(parms, x)), {
        
         dS <- - (beta * k * S * I) / (S + I + R)
         dI <- + (beta * k * S * I) / (S + I + R) - r * I
         dR <- r * I
  
-       der <- c(dS, dI, dR)
+        der <- c(dS, dI, dR)
        
-         return(list(der))
-     }) 
+        return(list(der))
+    }) 
 }
 
 simulation <- as.data.frame(ode(y = inits, times = dt, 
@@ -357,23 +357,23 @@ simulation <- as.data.frame(ode(y = inits, times = dt,
 
 ---
 ```{r eval=FALSE}
- library(deSolve)
+library(deSolve)
 
-* parms <- c(beta = 0.333, k = 3 , r = 0.333)
- inits <- c(S = 499, I = 1, R = 0)
- dt <- seq(0, 300, 1)
+{{parms <- c(beta = 0.333, k = 3 , r = 0.333)}}
+inits <- c(S = 499, I = 1, R = 0)
+dt <- seq(0, 300, 1)
 
-* SIR <- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+{{SIR <- function(t, x, parms)}}{
+    with(as.list(c(parms, x)), {
        
         dS <- - (beta * k * S * I) / (S + I + R)
         dI <- + (beta * k * S * I) / (S + I + R) - r * I
         dR <- r * I
  
-       der <- c(dS, dI, dR)
+        der <- c(dS, dI, dR)
        
-         return(list(der))
-     }) 
+        return(list(der))
+    }) 
 }
 
 simulation <- as.data.frame(ode(y = inits, times = dt, 
@@ -383,23 +383,23 @@ simulation <- as.data.frame(ode(y = inits, times = dt,
 
 ---
 ```{r eval=FALSE}
- library(deSolve)
+library(deSolve)
 
- parms <- c(beta = 0.333, k = 3 , r = 0.333)
- inits <- c(S = 499, I = 1, R = 0)
- dt <- seq(0, 300, 1)
+parms <- c(beta = 0.333, k = 3 , r = 0.333)
+inits <- c(S = 499, I = 1, R = 0)
+dt <- seq(0, 300, 1)
 
-* SIR <- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+{{SIR <- function(t, x, parms)}}{
+    with(as.list(c(parms, x)), {
        
         dS <- - (beta * k * S * I) / (S + I + R)
         dI <- + (beta * k * S * I) / (S + I + R) - r * I
         dR <- r * I
  
-       der <- c(dS, dI, dR)
+        der <- c(dS, dI, dR)
        
-         return(list(der))
-     }) 
+        return(list(der))
+    }) 
 }
 
 simulation <- as.data.frame(ode(y = inits, times = dt, 
@@ -409,23 +409,23 @@ simulation <- as.data.frame(ode(y = inits, times = dt,
 
 ---
 ```{r eval=FALSE}
- library(deSolve)
+library(deSolve)
 
- parms <- c(beta = 0.333, k = 3 , r = 0.333)
- inits <- c(S = 499, I = 1, R = 0)
- dt <- seq(0, 300, 1)
+parms <- c(beta = 0.333, k = 3 , r = 0.333)
+inits <- c(S = 499, I = 1, R = 0)
+dt <- seq(0, 300, 1)
 
-* SIR <- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+{{SIR <- function(t, x, parms)}}{
+    with(as.list(c(parms, x)), {
        
         dS <- - (beta * k * S * I) / (S + I + R)
         dI <- + (beta * k * S * I) / (S + I + R) - r * I
         dR <- r * I
  
-       der <- c(dS, dI, dR)
+        der <- c(dS, dI, dR)
        
-         return(list(der))
-     }) 
+        return(list(der))
+    }) 
 }
 
 simulation <- as.data.frame(ode(y = inits, times = dt, 
@@ -435,23 +435,23 @@ simulation <- as.data.frame(ode(y = inits, times = dt,
 
 ---
 ```{r eval=FALSE}
- library(deSolve)
+library(deSolve)
 
- parms <- c(beta = 0.333, k = 3 , r = 0.333)
- inits <- c(S = 499, I = 1, R = 0)
- dt <- seq(0, 300, 1)
+parms <- c(beta = 0.333, k = 3 , r = 0.333)
+inits <- c(S = 499, I = 1, R = 0)
+dt <- seq(0, 300, 1)
 
- SIR <- function(t, x, parms){
-*     with(as.list(c(parms, x)), {
+SIR <- function(t, x, parms){
+{{   with(as.list(c(parms, x))}}, {
        
         dS <- - (beta * k * S * I) / (S + I + R)
         dI <- + (beta * k * S * I) / (S + I + R) - r * I
         dR <- r * I
  
-       der <- c(dS, dI, dR)
+        der <- c(dS, dI, dR)
        
-         return(list(der))
-     }) 
+        return(list(der))
+    }) 
 }
 
 simulation <- as.data.frame(ode(y = inits, times = dt, 
@@ -475,23 +475,23 @@ simulation <- as.data.frame(ode(y = inits, times = dt,
 
 ---
 ```{r eval=FALSE}
- library(deSolve)
+library(deSolve)
 
- parms <- c(beta = 0.333, k = 3 , r = 0.333)
- inits <- c(S = 499, I = 1, R = 0)
- dt <- seq(0, 300, 1)
+parms <- c(beta = 0.333, k = 3 , r = 0.333)
+inits <- c(S = 499, I = 1, R = 0)
+dt <- seq(0, 300, 1)
 
- SIR <- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+SIR <- function(t, x, parms){
+    with(as.list(c(parms, x)), {
        
-*        dS <- - (beta * k * S * I) / (S + I + R)
-*        dI <- + (beta * k * S * I) / (S + I + R) - r * I
-*        dR <- r * I
+{{       dS <- - (beta * k * S * I) / (S + I + R)}}
+{{       dI <- + (beta * k * S * I) / (S + I + R) - r * I}}
+{{       dR <- r * I}}
  
-       der <- c(dS, dI, dR)
+        der <- c(dS, dI, dR)
        
-         return(list(der))
-     }) 
+        return(list(der))
+    }) 
 }
 
 simulation <- as.data.frame(ode(y = inits, times = dt, 
@@ -505,23 +505,23 @@ Know how to modify these.
 
 ---
 ```{r eval=FALSE}
- library(deSolve)
+library(deSolve)
 
- parms <- c(beta = 0.333, k = 3 , r = 0.333)
- inits <- c(S = 499, I = 1, R = 0)
- dt <- seq(0, 300, 1)
+parms <- c(beta = 0.333, k = 3 , r = 0.333)
+inits <- c(S = 499, I = 1, R = 0)
+dt <- seq(0, 300, 1)
 
- SIR <- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+SIR <- function(t, x, parms){
+    with(as.list(c(parms, x)), {
        
         dS <- - (beta * k * S * I) / (S + I + R)
         dI <- + (beta * k * S * I) / (S + I + R) - r * I
         dR <- r * I
- 
-*       der <- c(dS, dI, dR)
+    
+{{       der <- c(dS, dI, dR)}}
        
-*        return(list(der))
-     }) 
+{{       return(list(der))}}
+    }) 
 }
 
 simulation <- as.data.frame(ode(y = inits, times = dt, 
@@ -540,15 +540,15 @@ We just make a variable called `der` for convenience. We could do `return(list(c
 
 ---
 ```{r eval=FALSE}
- library(deSolve)
+library(deSolve)
 
- parms <- c(beta = 0.333, k = 3 , r = 0.333)
- inits <- c(S = 499, I = 1, R = 0)
- dt <- seq(0, 300, 1)
+parms <- c(beta = 0.333, k = 3 , r = 0.333)
+inits <- c(S = 499, I = 1, R = 0)
+dt <- seq(0, 300, 1)
 
- SIR <- function(t, x, parms){
-     with(as.list(c(parms, x)), {
-       
+SIR <- function(t, x, parms){
+    with(as.list(c(parms, x)), {
+    
         dS <- - (beta * k * S * I) / (S + I + R)
         dI <- + (beta * k * S * I) / (S + I + R) - r * I
         dR <- r * I
@@ -556,11 +556,11 @@ We just make a variable called `der` for convenience. We could do `return(list(c
         der <- c(dS, dI, dR)
        
         return(list(der))
-     }) 
+    })
 }
 
-* simulation <- as.data.frame(ode(y = inits, times = dt, 
-*                                 func = SIR, parms = parms))
+{{simulation <- as.data.frame(ode(y = inits, times = dt, }}
+{{ }}                                func = SIR, parms = parms))
 ```
 --
 
@@ -573,14 +573,14 @@ Then save that output as a `data.frame()` in a variable called `simulation`.
 ---
 # What is in simulations?
 ```{r eval=TRUE, include=FALSE}
- library(deSolve)
+library(deSolve)
 
- parms <- c(beta = 0.333, k = 3 , r = 0.333)
- inits <- c(S = 499, I = 1, R = 0)
- dt <- seq(0, 300, 1)
+parms <- c(beta = 0.333, k = 3 , r = 0.333)
+inits <- c(S = 499, I = 1, R = 0)
+dt <- seq(0, 300, 1)
 
- SIR <- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+SIR <- function(t, x, parms){
+    with(as.list(c(parms, x)), {
        
         dS <- - (beta * k * S * I) / (S + I + R)
         dI <- + (beta * k * S * I) / (S + I + R) - r * I
@@ -592,8 +592,8 @@ Then save that output as a `data.frame()` in a variable called `simulation`.
      }) 
 }
 
- simulation <- as.data.frame(ode(y = inits, times = dt, 
-                                 func = SIR, parms = parms))
+simulation <- as.data.frame(ode(y = inits, times = dt, 
+                                func = SIR, parms = parms))
 ```
 
 --
@@ -682,12 +682,12 @@ class: center, middle, inverse
 ---
 # Make an SI model
 ```{r eval=FALSE, include=TRUE}
- parms <- c(beta = 0.333, k = 3 , r = 0.333)
- inits <- c(S = 499, I = 1, R = 0)
- dt <- seq(0, 300, 1)
+parms <- c(beta = 0.333, k = 3 , r = 0.333)
+inits <- c(S = 499, I = 1, R = 0)
+dt <- seq(0, 300, 1)
 
- SIR <- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+SIR <- function(t, x, parms){
+    with(as.list(c(parms, x)), {
        
         dS <- - (beta * k * S * I) / (S + I + R)
         dI <- + (beta * k * S * I) / (S + I + R) - r * I
@@ -696,48 +696,48 @@ class: center, middle, inverse
         der <- c(dS, dI, dR)
        
         return(list(der))
-     }) 
+    }) 
 }
 
- simulation <- as.data.frame(ode(y = inits, times = dt, 
-                                 func = SIR, parms = parms))
+simulation <- as.data.frame(ode(y = inits, times = dt, 
+                                func = SIR, parms = parms))
 ```
 What needs to be modified?
 
 ---
 # Make an SI model
 ```{r eval=FALSE, include=TRUE}
-* parms <- c(beta = 0.333, k = 3 , r = 0.333)
-* inits <- c(S = 499, I = 1, R = 0)
- dt <- seq(0, 300, 1)
+{{parms <- c(beta = 0.333, k = 3 , r = 0.333)}}
+{{inits <- c(S = 499, I = 1, R = 0)}}
+dt <- seq(0, 300, 1)
 
-* SIR <- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+{{SIR <- function(t, x, parms)}}{
+    with(as.list(c(parms, x)), {
        
-*        dS <- - (beta * k * S * I) / (S + I + R)
-*        dI <- + (beta * k * S * I) / (S + I + R) - r * I
-*        dR <- r * I
+{{       dS <- - (beta * k * S * I) / (S + I + R)}}
+{{       dI <- + (beta * k * S * I) / (S + I + R) - r * I}}
+{{       dR <- r * I}}
  
-*        der <- c(dS, dI, dR)
+{{       der <- c(dS, dI, dR)}}
        
         return(list(der))
-     }) 
+    }) 
 }
 
-* simulation <- as.data.frame(ode(y = inits, times = dt, 
-                                 func = SIR, parms = parms))
+{{simulation <- as.data.frame(ode(y = inits, times = dt,}}
+{{ }}                              func = SIR, parms = parms))
 ```
 What needs to be modified?
 
 ---
 
 ```{r eval=FALSE, include=TRUE}
-* parms_si <- c(beta = 0.333, k = 3)
-* inits_si <- c(S = 499, I = 1)
- dt <- seq(0, 300, 1)
+{{parms_si <- c(beta = 0.333, k = 3)}}
+{{inits_si <- c(S = 499, I = 1)}}
+dt <- seq(0, 300, 1)
 
- SIR <- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+SIR <- function(t, x, parms){
+    with(as.list(c(parms, x)), {
        
         dS <- - (beta * k * S * I) / (S + I + R)
         dI <- + (beta * k * S * I) / (S + I + R) - r * I
@@ -746,11 +746,11 @@ What needs to be modified?
         der <- c(dS, dI, dR)
        
         return(list(der))
-     }) 
+    }) 
 }
 
- simulation <- as.data.frame(ode(y = inits, times = dt, 
-                                 func = SIR, parms = parms))
+simulation <- as.data.frame(ode(y = inits, times = dt, 
+                                func = SIR, parms = parms))
 ```
 Remove `R` from `parms` and `inits`.
 
@@ -759,19 +759,19 @@ Also renamed them so we don't overwrite old `parms` and `inits`.
 ---
 
 ```{r eval=FALSE, include=TRUE}
- parms_si <- c(beta = 0.333, k = 3)
- inits_si <- c(S = 499, I = 1)
- dt <- seq(0, 300, 1)
+parms_si <- c(beta = 0.333, k = 3)
+inits_si <- c(S = 499, I = 1)
+dt <- seq(0, 300, 1)
 
- SI <- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+SI <- function(t, x, parms){
+    with(as.list(c(parms, x)), {
 
-*       N <- S + I
-        dS <- - (beta * k * S * I) / N
-*       dI <- + (beta * k * S * I) / N
-* 
+{{       N <- S + I }}
+        dS <- - (beta * k * S * I) / N}}
+{{       dI <- + (beta * k * S * I) / N}}
+{{ }}
     
-*    der <- c(dS, dI)
+{{       der <- c(dS, dI)}}
        
         return(list(der))
      }) 
@@ -786,12 +786,12 @@ Also define `N` in one place so we don't have to modify it multiple times.
 
 ---
 ```{r eval=FALSE, include=TRUE}
- parms_si <- c(beta = 0.333, k = 3)
- inits_si <- c(S = 499, I = 1)
- dt <- seq(0, 300, 1)
+parms_si <- c(beta = 0.333, k = 3)
+inits_si <- c(S = 499, I = 1)
+dt <- seq(0, 300, 1)
 
- SI <- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+SI <- function(t, x, parms){
+    with(as.list(c(parms, x)), {
 
         N <- S + I
         dS <- - (beta * k * S * I) / N
@@ -803,8 +803,8 @@ Also define `N` in one place so we don't have to modify it multiple times.
      }) 
 }
 
-* simulation_si <- as.data.frame(ode(y = inits_si, times = dt, 
-*                             func = SI, parms = parms_si))
+{{simulation_si <- as.data.frame(ode(y = inits_si, times = dt, }}
+{{                                  func = SI, parms = parms_si))}}
 ```
 
 Save simulations in a new object and change `ode()` call to our new `parms`, `inits`, and `func`.

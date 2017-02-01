@@ -13,7 +13,7 @@ class: center, middle, inverse, title-slide
 # Review: ODEs in R
 ## Like Wednesday — But Slower
 ### Mathew Kiang
-### 2016/1/27
+### 1/27/2017
 
 ---
 
@@ -38,7 +38,7 @@ class: center, middle, inverse
 
 
 ```r
- library(deSolve)
+library(deSolve)
 ```
 
 --
@@ -85,24 +85,24 @@ class: center, middle, inverse
 ---
 
 ```r
- library(deSolve)
+library(deSolve)
 
- parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
- inits &lt;- c(S = 499, I = 1, R = 0)
- dt &lt;- seq(0, 300, 1)
+parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
+inits &lt;- c(S = 499, I = 1, R = 0)
+dt &lt;- seq(0, 300, 1)
 
- SIR &lt;- function(t, x, parms){
-     with(as.list(c(parms, x)), {
-        
+SIR &lt;- function(t, x, parms){
+    with(as.list(c(parms, x)), {
+    
         dS &lt;- - (beta * k * S * I) / (S + I + R)
         dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
         dR &lt;- r * I
-
+    
         der &lt;- c(dS, dI, dR)
         
-         return(list(der))
-     }) 
- }
+        return(list(der))
+    }) 
+}
 
 simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
                                 func = SIR, parms = parms))
@@ -116,24 +116,24 @@ It is up on Canvas under Code.
 ---
 
 ```r
- library(deSolve)
+library(deSolve)
 
-* parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
-* inits &lt;- c(S = 499, I = 1, R = 0)
-* dt &lt;- seq(0, 300, 1)
+*parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
+*inits &lt;- c(S = 499, I = 1, R = 0)
+*dt &lt;- seq(0, 300, 1)
 
- SIR &lt;- function(t, x, parms){
-     with(as.list(c(parms, x)), {
-        
+SIR &lt;- function(t, x, parms){
+    with(as.list(c(parms, x)), {
+    
 *       dS &lt;- - (beta * k * S * I) / (S + I + R)
 *       dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
 *       dR &lt;- r * I
-
-*       der &lt;- c(dS, dI, dR)
         
-         return(list(der))
-     }) 
- }
+*       der &lt;- c(dS, dI, dR)
+    
+        return(list(der))
+    }) 
+}
 
 simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
                                 func = SIR, parms = parms))
@@ -146,24 +146,24 @@ We will give you the rest (most of it).
 ---
 
 ```r
-* library(deSolve)
+*library(deSolve)
 
- parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
- inits &lt;- c(S = 499, I = 1, R = 0)
- dt &lt;- seq(0, 300, 1)
+parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
+inits &lt;- c(S = 499, I = 1, R = 0)
+dt &lt;- seq(0, 300, 1)
 
- SIR &lt;- function(t, x, parms){
-     with(as.list(c(parms, x)), {
-        
+SIR &lt;- function(t, x, parms){
+    with(as.list(c(parms, x)), {
+    
         dS &lt;- - (beta * k * S * I) / (S + I + R)
         dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
         dR &lt;- r * I
-
+    
         der &lt;- c(dS, dI, dR)
         
-         return(list(der))
-     }) 
- }
+        return(list(der))
+    }) 
+}
 
 simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
                                 func = SIR, parms = parms))
@@ -173,24 +173,24 @@ Just loads the `deSolve` library so you can use `ode()`
 ---
 
 ```r
- library(deSolve)
+library(deSolve)
 
-* parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
- inits &lt;- c(S = 499, I = 1, R = 0)
- dt &lt;- seq(0, 300, 1)
+*parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
+inits &lt;- c(S = 499, I = 1, R = 0)
+dt &lt;- seq(0, 300, 1)
 
- SIR &lt;- function(t, x, parms){
-     with(as.list(c(parms, x)), {
-        
+SIR &lt;- function(t, x, parms){
+    with(as.list(c(parms, x)), {
+    
         dS &lt;- - (beta * k * S * I) / (S + I + R)
         dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
         dR &lt;- r * I
-
+    
         der &lt;- c(dS, dI, dR)
         
-         return(list(der))
-     }) 
- }
+        return(list(der))
+    }) 
+}
 
 simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
                                 func = SIR, parms = parms))
@@ -210,24 +210,24 @@ You'll need to add/remove from `parms` as your model dictates
 ---
 
 ```r
- library(deSolve)
+library(deSolve)
 
- parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
-* inits &lt;- c(S = 499, I = 1, R = 0)
- dt &lt;- seq(0, 300, 1)
+parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
+*inits &lt;- c(S = 499, I = 1, R = 0)
+dt &lt;- seq(0, 300, 1)
 
- SIR &lt;- function(t, x, parms){
-     with(as.list(c(parms, x)), {
-        
+SIR &lt;- function(t, x, parms){
+    with(as.list(c(parms, x)), {
+    
         dS &lt;- - (beta * k * S * I) / (S + I + R)
         dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
         dR &lt;- r * I
 
         der &lt;- c(dS, dI, dR)
-        
-         return(list(der))
-     }) 
- }
+    
+        return(list(der))
+    }) 
+}
 
 simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
                                 func = SIR, parms = parms))
@@ -247,24 +247,24 @@ Again, you'll need to add/remove from `inits` as your model changes
 ---
 
 ```r
- library(deSolve)
+library(deSolve)
 
- parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
- inits &lt;- c(S = 499, I = 1, R = 0)
-* dt &lt;- seq(0, 300, 1)
+parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
+inits &lt;- c(S = 499, I = 1, R = 0)
+*dt &lt;- seq(0, 300, 1)
 
- SIR &lt;- function(t, x, parms){
-     with(as.list(c(parms, x)), {
-        
+SIR &lt;- function(t, x, parms){
+    with(as.list(c(parms, x)), {
+    
         dS &lt;- - (beta * k * S * I) / (S + I + R)
         dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
         dR &lt;- r * I
 
         der &lt;- c(dS, dI, dR)
-        
-         return(list(der))
-     }) 
- }
+    
+        return(list(der))
+    }) 
+}
 
 simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
                                 func = SIR, parms = parms))
@@ -287,24 +287,24 @@ However, more time-steps (and finer time-steps) requires longer computational ti
 ---
 
 ```r
- library(deSolve)
+library(deSolve)
 
- parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
- inits &lt;- c(S = 499, I = 1, R = 0)
- dt &lt;- seq(0, 300, 1)
+parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
+inits &lt;- c(S = 499, I = 1, R = 0)
+dt &lt;- seq(0, 300, 1)
 
-* SIR &lt;- function(t, x, parms){
-*     with(as.list(c(parms, x)), {
-*       
-*        dS &lt;- - (beta * k * S * I) / (S + I + R)
-*        dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
-*        dR &lt;- r * I
+*SIR &lt;- function(t, x, parms){
+*   with(as.list(c(parms, x)), {
+* 
+*       dS &lt;- - (beta * k * S * I) / (S + I + R)
+*       dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
+*       dR &lt;- r * I
 * 
 *       der &lt;- c(dS, dI, dR)
-*       
-*         return(list(der))
-*     }) 
-* }
+* 
+*       return(list(der))
+*   }) 
+*}
 
 simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
                                 func = SIR, parms = parms))
@@ -315,23 +315,23 @@ Wrap up your model as a function
 ---
 
 ```r
- library(deSolve)
+library(deSolve)
 
- parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
- inits &lt;- c(S = 499, I = 1, R = 0)
- dt &lt;- seq(0, 300, 1)
+parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
+inits &lt;- c(S = 499, I = 1, R = 0)
+dt &lt;- seq(0, 300, 1)
 
-* SIR &lt;- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+*SIR &lt;- function(t, x, parms){
+    with(as.list(c(parms, x)), {
        
         dS &lt;- - (beta * k * S * I) / (S + I + R)
         dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
         dR &lt;- r * I
  
-       der &lt;- c(dS, dI, dR)
+        der &lt;- c(dS, dI, dR)
        
-         return(list(der))
-     }) 
+        return(list(der))
+    }) 
 }
 
 simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
@@ -344,23 +344,23 @@ This `function` is named `SIR` and takes inputs `t`, `x`, `parms`
 ---
 
 ```r
- library(deSolve)
+library(deSolve)
 
- parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
- inits &lt;- c(S = 499, I = 1, R = 0)
-* dt &lt;- seq(0, 300, 1)
+parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
+inits &lt;- c(S = 499, I = 1, R = 0)
+*dt &lt;- seq(0, 300, 1)
 
-* SIR &lt;- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+*SIR &lt;- function(t, x, parms){
+    with(as.list(c(parms, x)), {
        
         dS &lt;- - (beta * k * S * I) / (S + I + R)
         dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
         dR &lt;- r * I
  
-       der &lt;- c(dS, dI, dR)
+        der &lt;- c(dS, dI, dR)
        
-         return(list(der))
-     }) 
+        return(list(der))
+    }) 
 }
 
 simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
@@ -371,23 +371,23 @@ simulation &lt;- as.data.frame(ode(y = inits, times = dt,
 ---
 
 ```r
- library(deSolve)
+library(deSolve)
 
-* parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
- inits &lt;- c(S = 499, I = 1, R = 0)
- dt &lt;- seq(0, 300, 1)
+*parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
+inits &lt;- c(S = 499, I = 1, R = 0)
+dt &lt;- seq(0, 300, 1)
 
-* SIR &lt;- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+*SIR &lt;- function(t, x, parms){
+    with(as.list(c(parms, x)), {
        
         dS &lt;- - (beta * k * S * I) / (S + I + R)
         dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
         dR &lt;- r * I
  
-       der &lt;- c(dS, dI, dR)
+        der &lt;- c(dS, dI, dR)
        
-         return(list(der))
-     }) 
+        return(list(der))
+    }) 
 }
 
 simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
@@ -398,23 +398,23 @@ simulation &lt;- as.data.frame(ode(y = inits, times = dt,
 ---
 
 ```r
- library(deSolve)
+library(deSolve)
 
- parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
- inits &lt;- c(S = 499, I = 1, R = 0)
- dt &lt;- seq(0, 300, 1)
+parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
+inits &lt;- c(S = 499, I = 1, R = 0)
+dt &lt;- seq(0, 300, 1)
 
-* SIR &lt;- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+*SIR &lt;- function(t, x, parms){
+    with(as.list(c(parms, x)), {
        
         dS &lt;- - (beta * k * S * I) / (S + I + R)
         dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
         dR &lt;- r * I
  
-       der &lt;- c(dS, dI, dR)
+        der &lt;- c(dS, dI, dR)
        
-         return(list(der))
-     }) 
+        return(list(der))
+    }) 
 }
 
 simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
@@ -425,23 +425,23 @@ simulation &lt;- as.data.frame(ode(y = inits, times = dt,
 ---
 
 ```r
- library(deSolve)
+library(deSolve)
 
- parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
- inits &lt;- c(S = 499, I = 1, R = 0)
- dt &lt;- seq(0, 300, 1)
+parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
+inits &lt;- c(S = 499, I = 1, R = 0)
+dt &lt;- seq(0, 300, 1)
 
-* SIR &lt;- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+*SIR &lt;- function(t, x, parms){
+    with(as.list(c(parms, x)), {
        
         dS &lt;- - (beta * k * S * I) / (S + I + R)
         dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
         dR &lt;- r * I
  
-       der &lt;- c(dS, dI, dR)
+        der &lt;- c(dS, dI, dR)
        
-         return(list(der))
-     }) 
+        return(list(der))
+    }) 
 }
 
 simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
@@ -452,23 +452,23 @@ simulation &lt;- as.data.frame(ode(y = inits, times = dt,
 ---
 
 ```r
- library(deSolve)
+library(deSolve)
 
- parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
- inits &lt;- c(S = 499, I = 1, R = 0)
- dt &lt;- seq(0, 300, 1)
+parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
+inits &lt;- c(S = 499, I = 1, R = 0)
+dt &lt;- seq(0, 300, 1)
 
- SIR &lt;- function(t, x, parms){
-*     with(as.list(c(parms, x)), {
+SIR &lt;- function(t, x, parms){
+*   with(as.list(c(parms, x)), {
        
         dS &lt;- - (beta * k * S * I) / (S + I + R)
         dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
         dR &lt;- r * I
  
-       der &lt;- c(dS, dI, dR)
+        der &lt;- c(dS, dI, dR)
        
-         return(list(der))
-     }) 
+        return(list(der))
+    }) 
 }
 
 simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
@@ -493,23 +493,23 @@ simulation &lt;- as.data.frame(ode(y = inits, times = dt,
 ---
 
 ```r
- library(deSolve)
+library(deSolve)
 
- parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
- inits &lt;- c(S = 499, I = 1, R = 0)
- dt &lt;- seq(0, 300, 1)
+parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
+inits &lt;- c(S = 499, I = 1, R = 0)
+dt &lt;- seq(0, 300, 1)
 
- SIR &lt;- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+SIR &lt;- function(t, x, parms){
+    with(as.list(c(parms, x)), {
        
-*        dS &lt;- - (beta * k * S * I) / (S + I + R)
-*        dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
-*        dR &lt;- r * I
+*       dS &lt;- - (beta * k * S * I) / (S + I + R)
+*       dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
+*       dR &lt;- r * I
  
-       der &lt;- c(dS, dI, dR)
+        der &lt;- c(dS, dI, dR)
        
-         return(list(der))
-     }) 
+        return(list(der))
+    }) 
 }
 
 simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
@@ -524,23 +524,23 @@ Know how to modify these.
 ---
 
 ```r
- library(deSolve)
+library(deSolve)
 
- parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
- inits &lt;- c(S = 499, I = 1, R = 0)
- dt &lt;- seq(0, 300, 1)
+parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
+inits &lt;- c(S = 499, I = 1, R = 0)
+dt &lt;- seq(0, 300, 1)
 
- SIR &lt;- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+SIR &lt;- function(t, x, parms){
+    with(as.list(c(parms, x)), {
        
         dS &lt;- - (beta * k * S * I) / (S + I + R)
         dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
         dR &lt;- r * I
- 
+    
 *       der &lt;- c(dS, dI, dR)
        
-*        return(list(der))
-     }) 
+*       return(list(der))
+    }) 
 }
 
 simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
@@ -560,15 +560,15 @@ We just make a variable called `der` for convenience. We could do `return(list(c
 ---
 
 ```r
- library(deSolve)
+library(deSolve)
 
- parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
- inits &lt;- c(S = 499, I = 1, R = 0)
- dt &lt;- seq(0, 300, 1)
+parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
+inits &lt;- c(S = 499, I = 1, R = 0)
+dt &lt;- seq(0, 300, 1)
 
- SIR &lt;- function(t, x, parms){
-     with(as.list(c(parms, x)), {
-       
+SIR &lt;- function(t, x, parms){
+    with(as.list(c(parms, x)), {
+    
         dS &lt;- - (beta * k * S * I) / (S + I + R)
         dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
         dR &lt;- r * I
@@ -576,10 +576,10 @@ We just make a variable called `der` for convenience. We could do `return(list(c
         der &lt;- c(dS, dI, dR)
        
         return(list(der))
-     }) 
+    })
 }
 
-* simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
+*simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
 *                                 func = SIR, parms = parms))
 ```
 --
@@ -711,12 +711,12 @@ class: center, middle, inverse
 # Make an SI model
 
 ```r
- parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
- inits &lt;- c(S = 499, I = 1, R = 0)
- dt &lt;- seq(0, 300, 1)
+parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
+inits &lt;- c(S = 499, I = 1, R = 0)
+dt &lt;- seq(0, 300, 1)
 
- SIR &lt;- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+SIR &lt;- function(t, x, parms){
+    with(as.list(c(parms, x)), {
        
         dS &lt;- - (beta * k * S * I) / (S + I + R)
         dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
@@ -725,11 +725,11 @@ class: center, middle, inverse
         der &lt;- c(dS, dI, dR)
        
         return(list(der))
-     }) 
+    }) 
 }
 
- simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
-                                 func = SIR, parms = parms))
+simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
+                                func = SIR, parms = parms))
 ```
 What needs to be modified?
 
@@ -737,25 +737,25 @@ What needs to be modified?
 # Make an SI model
 
 ```r
-* parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
-* inits &lt;- c(S = 499, I = 1, R = 0)
- dt &lt;- seq(0, 300, 1)
+*parms &lt;- c(beta = 0.333, k = 3 , r = 0.333)
+*inits &lt;- c(S = 499, I = 1, R = 0)
+dt &lt;- seq(0, 300, 1)
 
-* SIR &lt;- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+*SIR &lt;- function(t, x, parms){
+    with(as.list(c(parms, x)), {
        
-*        dS &lt;- - (beta * k * S * I) / (S + I + R)
-*        dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
-*        dR &lt;- r * I
+*       dS &lt;- - (beta * k * S * I) / (S + I + R)
+*       dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
+*       dR &lt;- r * I
  
-*        der &lt;- c(dS, dI, dR)
+*       der &lt;- c(dS, dI, dR)
        
         return(list(der))
-     }) 
+    }) 
 }
 
-* simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
-                                 func = SIR, parms = parms))
+*simulation &lt;- as.data.frame(ode(y = inits, times = dt,
+*                               func = SIR, parms = parms))
 ```
 What needs to be modified?
 
@@ -763,12 +763,12 @@ What needs to be modified?
 
 
 ```r
-* parms_si &lt;- c(beta = 0.333, k = 3)
-* inits_si &lt;- c(S = 499, I = 1)
- dt &lt;- seq(0, 300, 1)
+*parms_si &lt;- c(beta = 0.333, k = 3)
+*inits_si &lt;- c(S = 499, I = 1)
+dt &lt;- seq(0, 300, 1)
 
- SIR &lt;- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+SIR &lt;- function(t, x, parms){
+    with(as.list(c(parms, x)), {
        
         dS &lt;- - (beta * k * S * I) / (S + I + R)
         dI &lt;- + (beta * k * S * I) / (S + I + R) - r * I
@@ -777,11 +777,11 @@ What needs to be modified?
         der &lt;- c(dS, dI, dR)
        
         return(list(der))
-     }) 
+    }) 
 }
 
- simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
-                                 func = SIR, parms = parms))
+simulation &lt;- as.data.frame(ode(y = inits, times = dt, 
+                                func = SIR, parms = parms))
 ```
 Remove `R` from `parms` and `inits`.
 
@@ -791,19 +791,19 @@ Also renamed them so we don't overwrite old `parms` and `inits`.
 
 
 ```r
- parms_si &lt;- c(beta = 0.333, k = 3)
- inits_si &lt;- c(S = 499, I = 1)
- dt &lt;- seq(0, 300, 1)
+parms_si &lt;- c(beta = 0.333, k = 3)
+inits_si &lt;- c(S = 499, I = 1)
+dt &lt;- seq(0, 300, 1)
 
- SI &lt;- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+SI &lt;- function(t, x, parms){
+    with(as.list(c(parms, x)), {
 
-*       N &lt;- S + I
-        dS &lt;- - (beta * k * S * I) / N
+*       N &lt;- S + I 
+        dS &lt;- - (beta * k * S * I) / N}}
 *       dI &lt;- + (beta * k * S * I) / N
 * 
     
-*    der &lt;- c(dS, dI)
+*       der &lt;- c(dS, dI)
        
         return(list(der))
      }) 
@@ -819,12 +819,12 @@ Also define `N` in one place so we don't have to modify it multiple times.
 ---
 
 ```r
- parms_si &lt;- c(beta = 0.333, k = 3)
- inits_si &lt;- c(S = 499, I = 1)
- dt &lt;- seq(0, 300, 1)
+parms_si &lt;- c(beta = 0.333, k = 3)
+inits_si &lt;- c(S = 499, I = 1)
+dt &lt;- seq(0, 300, 1)
 
- SI &lt;- function(t, x, parms){
-     with(as.list(c(parms, x)), {
+SI &lt;- function(t, x, parms){
+    with(as.list(c(parms, x)), {
 
         N &lt;- S + I
         dS &lt;- - (beta * k * S * I) / N
@@ -836,8 +836,8 @@ Also define `N` in one place so we don't have to modify it multiple times.
      }) 
 }
 
-* simulation_si &lt;- as.data.frame(ode(y = inits_si, times = dt, 
-*                             func = SI, parms = parms_si))
+*simulation_si &lt;- as.data.frame(ode(y = inits_si, times = dt, 
+*                                  func = SI, parms = parms_si))
 ```
 
 Save simulations in a new object and change `ode()` call to our new `parms`, `inits`, and `func`.
