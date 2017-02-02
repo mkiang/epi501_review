@@ -11,3 +11,8 @@ system(paste0(phantom, decktape,
 system(paste0(phantom, decktape, 
               working_dir, "jan30-timesteps-measles-seir/index.html ", 
               working_dir, "jan30-timesteps-measles-seir/measles-handout.pdf"))
+
+## Print PDF of ebola
+system(paste0(phantom, decktape, 
+              working_dir, "feb-1-ebola/index.html ", 
+              working_dir, "feb-1-ebola/ebola-handout.pdf"))
