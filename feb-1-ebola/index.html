@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ebola Worksheet</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Mathew Kiang" />
+    <link rel="stylesheet" href="slides_style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Ebola Worksheet
+## From Wednesday lecture – But Slower
+### Mathew Kiang
+### 2/1/2017
+
+---
+
+
+
+
+# Goals for today
+
+## Go over the Ebola handout.red[*]
+
+.footnote[.red[*]Again, only providing you with enough code to finish it on your own.]
+---
+class: center, middle
+# Download the code.red[*]
+## [https://git.io/vD3W0](https://git.io/vD3W0)
+
+.footnote[.red[*]Don't use the code on Canvas.]
+
+---
+class: center, middle, inverse
+# Question 1.red[*]
+## Make an SEIR model that incorporates case fatality ratio f
+
+.footnote[.red[*]Sort of -- Questions are unnumbered on the worksheet.]
+---
+# Start with code you already have
+
+```r
+SEIR &lt;- function(t, x, parms){
+    with(as.list(c(parms, x)), {
+        N &lt;- S + E + I + R 
+        dS &lt;- - (beta * k * S * I) / N
+        dE &lt;- + (beta * k * S * I) / N - (a * E)
+        dI &lt;- + (a * E) - (r * I)
+        dR &lt;- r * I
+        der &lt;- c(dS, dE, dI, dR)
+        return(list(der))
+    }) 
+}
+```
+Here is your boilerplate `SEIR` code. Incoporate `\(f\)`, which is a case fatality ratio. Recall, this is the fraction of infectious who do not recover.
+--
+
+- Also, change `a` to `s` (`\(\sigma\)`) and `r` to `g` (`\(\gamma\)`) to be consistent with the Althaus
+
+--
+
+- We are not going to use `b * k`, so replace that with `\(\beta\)` as `B`
+---
+class: center, middle, inverse
+# Work with a neighbor to make this model
+## Remember:
+### rename **a** to **s**
+### rename **r** to **g**
+### use **B** instead of **b * k**
+---
+
+```r
+library(deSolve)
+
+dt &lt;- seq(0, 365, 1) 
+inits &lt;- c(S = 999999,E = 0, I = 1, R = 0) 
+parms &lt;- c(B = 0.45, g = 1/5.61, s = 1/5.3, f = 0.6)
+
+SEIR_ex &lt;- function(t, x, parms) {
+    with(as.list(c(parms, x)), {
+        
+        N &lt;- S + E + I + R
+        dS &lt;- - (B * S * I) / N 
+        dE &lt;- + (B * S * I) / N - (s * E) 
+        dI &lt;- (s * E) - (g * I) 
+        dR &lt;- (1 - f) * (g * I) 
+        
+        der &lt;- c(dS, dE, dI, dR)
+        
+        return(list(der))
+    }) 
+}
+
+data_out &lt;- as.data.frame(ode(inits, dt, SEIR_ex, parms = parms))
+```
+Your code should now look something like this.
+
+- This is almost **exactly** like our boilerplate code. 
+--
+
+- Use the `inits`, `dt`, and `parms` I specified
+
+--
+
+Should all be very familiar by now. Review previous slides if this is still unclear.
+---
+# Plot of all lines
+
+```r
+matplot(data_out[, 1], data_out[, 2:5], type = 'l', 
+        ylab = 'People', xlab = 'Time (days)',lty = 1)
+legend(x = "topright", legend = c('S', 'E', 'I', 'R'), col = 1:4, lty = 1)
+```
+
+![](index_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+---
+# Plot of infected
+
+```r
+matplot(data_out[, 1], data_out[, 4], type = 'l', 
+        ylab = 'Infected', xlab = 'Time (days)')
+```
+
+![](index_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+---
+class: center, middle, inverse
+# Question 2
+## With a neighbor, add compartments **C** for total cases and **D** for total deaths
+
+---
+# Add new compartments
+
+```r
+SEIR_ex &lt;- function(t, x, parms) {
+    with(as.list(c(parms, x)), {
+        
+        N &lt;- S + E + I + R
+        dS &lt;- - (B * S * I) / N 
+        dE &lt;- + (B * S * I) / N - (s * E) 
+        dI &lt;- (s * E) - (g * I) 
+        dR &lt;- (1 - f) * (g * I) 
+        
+        der &lt;- c(dS, dE, dI, dR)
+        
+        return(list(der))
+    }) 
+}
+```
+Again, start with code you already have. Add:
+
+- `dC` which is the cumulative cases
+
+- `dD` which is the total number of deaths
+---
+# Add new compartments
+
+```r
+SEIR_alt1 &lt;- function(t, x, parms) {
+    with(as.list(c(parms, x)), {
+        
+        N &lt;- S + E + I + R
+        dS &lt;- - (B * S * I) / N 
+        dE &lt;- + (B * S * I) / N - (s * E) 
+        dI &lt;- (s * E) - (g * I) 
+        dR &lt;- (1 - f) * (g * I) 
+        
+*       dC &lt;- s * E
+*       dD &lt;- f * g * I
+        
+*       der &lt;- c(dS, dE, dI, dR, dC, dD)
+        
+        return(list(der))
+    }) 
+}
+```
+Don't forget to return `dC` and `dD` and add them in `inits`.
+
+---
+# Full Solution
+
+```r
+inits_alt1 &lt;- c(S = 999999,E = 0, I = 1, R = 0, C = 0, D = 0) 
+
+SEIR_alt1 &lt;- function(t, x, parms) {
+    with(as.list(c(parms, x)), {
+        
+        N &lt;- S + E + I + R
+        dS &lt;- - (B * S * I) / N 
+        dE &lt;- + (B * S * I) / N - (s * E) 
+        dI &lt;- (s * E) - (g * I) 
+        dR &lt;- (1 - f) * (g * I) 
+        
+        dC &lt;- s * E
+        dD &lt;- f * g * I
+        
+        der &lt;- c(dS, dE, dI, dR, dC, dD)
+        
+        return(list(der))
+    }) 
+}
+
+data_alt1 &lt;- as.data.frame(ode(inits_alt1, dt, SEIR_alt1, parms = parms))
+```
+
+---
+# Plot of all lines
+
+```r
+matplot(data_alt1[, 1], data_alt1[, 2:7], type = 'l', 
+        ylab = 'People', xlab = 'Time (days)',lty = 1)
+legend(x = "topright", legend = c('S', 'E', 'I', 'R', 'C', 'D'), 
+       col = 1:6, lty = 1)
+```
+
+![](index_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+---
+class: center, middle, inverse
+# Question 3
+## Time-varying transmission probability
+---
+# Time-varying transmission
+Althaus parameterizes transmission probability as: `$$\beta(t) = \beta e^{-k(t-\tau)}$$`
+
+--
+
+- Assume: 
+    - `\(k=0.0097\)` 
+    - `\(\beta=0.45\)`
+    - `\(\tau=0\)` (immediate control measures)
+--
+
+With a neighbor, plot `\(\beta\)` as a function of time from `\(t=0\)` to `\(t=120\)`
+
+--
+
+- Hints:
+
+--
+    - Make a sequence
+--
+    - Vectorized formulas are your friend
+---
+# Solution
+
+```r
+## Set constants
+beta0 &lt;- 0.45
+k &lt;- 0.0097
+tau &lt;- 0
+
+## Plug into formula
+days &lt;- 1:120
+betas &lt;- beta0 * exp(-k * (days - tau))
+
+## Plot it
+plot(x = days, y = betas, type = "l")
+```
+
+![](index_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+---
+# Solution
+
+```r
+## Set constants
+*beta0 &lt;- 0.45
+*k &lt;- 0.0097
+*tau &lt;- 0
+
+## Plug into formula
+days &lt;- 1:120
+betas &lt;- beta0 * exp(-k * (days - tau))
+
+## Plot it
+plot(x = days, y = betas, type = "l")
+```
+Set some constants. Not necessary, but makes the formula clearer.
+---
+# Solution
+
+```r
+## Set constants
+beta0 &lt;- 0.45
+k &lt;- 0.0097
+tau &lt;- 0
+
+## Plug into formula
+*days &lt;- 1:120
+betas &lt;- beta0 * exp(-k * (days - tau))
+
+## Plot it
+plot(x = days, y = betas, type = "l")
+```
+Set some constants. Not necessary, but makes the formula clearer.
+
+Make a sequence of days (or `seq(0, 120, 1/24)` for calculate hourly `\(\beta\)`)
+---
+# Solution
+
+```r
+## Set constants
+beta0 &lt;- 0.45
+k &lt;- 0.0097
+tau &lt;- 0
+
+## Plug into formula
+days &lt;- 1:120
+*betas &lt;- beta0 * exp(-k * (days - tau))
+
+## Plot it
+plot(x = days, y = betas, type = "l")
+```
+Set some constants. Not necessary, but makes the formula clearer.
+
+Make a sequence of days (or `seq(0, 120, 1/24)` for calculate hourly `\(\beta\)`)
+
+Make a new vector with the formula we want. Even though `k`, `tau`, and `beta0` are scalars, `R` will automatically vectorize (perform element-wise calculations) on `days` since it has length &gt; 1. (Try `print(betas)` if this is unclear.)
+---
+# Solution
+
+```r
+## Set constants
+beta0 &lt;- 0.45
+k &lt;- 0.0097
+tau &lt;- 0
+
+## Plug into formula
+days &lt;- 1:120
+betas &lt;- beta0 * exp(-k * (days - tau))
+
+## Plot it
+*plot(x = days, y = betas, type = "l")
+```
+Set some constants. Not necessary, but makes the formula clearer.
+
+Make a sequence of days (or `seq(0, 120, 1/24)` for calculate hourly `\(\beta\)`)
+
+Make a new vector with the formula we want. Even though `k`, `tau`, and `beta0` are scalars, `R` will automatically vectorize (perform element-wise calculations) on `days` since it has length &gt; 1. (Try `print(betas)` if this is unclear.)
+
+Plot it.
+---
+class: center, middle, inverse
+# Question 4
+## Now calculate and plot the changing R0
+---
+# Solution
+
+## Hint: This is (literally) one line of code to calculate and one line of code to plot.
+--
+
+```r
+r0s &lt;- betas / (1/5.61)
+plot(x = days, y = r0s, type = "l")
+```
+
+![](index_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+---
+# On what day is R0 &lt; 1?
+--
+
+- Try `help(which)`
+
+--
+
+- Combine that with indexing
+
+--
+
+
+```r
+which(r0s &lt;= 1)[1]
+```
+
+```
+## [1] 96
+```
+
+---
+# On what day is R0 &lt; 1?
+
+```r
+plot(x = days, y = r0s, type = "l")
+lines(x = days, y = rep(1, length(days)), col = 'red')
+```
+
+![](index_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+Or we could do it visually.
+
+(If this isn't clear, see `help(rep)` and consider why it is necessary.)
+---
+class: center, middle, inverse
+# With a neighbor, add the time-varying beta to SEIR model
+## Assume tau=0 for simplicity
+---
+# Solution
+
+```r
+SEIR_alt2 &lt;- function(t, x, parms) {
+    with(as.list(c(parms, x)), {
+        
+*       B  &lt;- B_init * exp(-k * t)
+        N  &lt;- S + E + I + R
+        dS &lt;- -(B * S * I) / N 
+        dE &lt;- +(B * S * I) / N - (s * E) 
+        dI &lt;- (s * E) - (g * I) 
+        dR &lt;- (1 - f) * (g * I) 
+        
+        dC &lt;- s * E
+        dD &lt;- f * g * I
+        
+        der &lt;- c(dS, dE, dI, dR, dC, dD)
+        
+        return(list(der))
+    }) 
+}
+```
+Yes, that's it..red[*]
+
+.footnote[.red[*] NOTE: This only works when tau=0. Need `ifelse()` if we incorporate tau.]
+---
+class: center, middle, inverse
+# Examine one of the countries
+## (Do this on your own or with a neighbor)
+---
+class: center, middle
+# Where is the data?
+
+###[Althaus's GitHub:](https://github.com/calthaus/Ebola) https://github.com/calthaus/Ebola.red[*]
+
+.footnote[.red[*] NOTE: See the `Intro to R` tutorial if you don't know how to import `csv` files.]
+---
+class: center, middle, inverse
+# That's it.
+## Thanks
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('showSlide', function (slide) {setTimeout(function() {window.dispatchEvent(new Event('resize'));}, 100)});</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
