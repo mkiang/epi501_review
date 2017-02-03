@@ -13,6 +13,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - Week 2 (February 3, 2017 lab) -- Revised 2/1/2017
     - [Ebola worksheet](./feb-1-ebola/index.html) [[PDF](./feb-1-ebola/ebola-handout.pdf)] | [[Code](https://github.com/mkiang/epi501_review/tree/master/feb-1-ebola/code)]
+        - [SEIR with case fatality](./feb-1-ebola/index.html#4)
+        - [Track total counts and total deaths](./feb-1-ebola/index.html#14)
+        - [Effects of time-varying transmission probability](./feb-1-ebola/index.html#19)
+        - [R0 and time-varying transmission probability](./feb-1-ebola/index.html#31)
+        - [SEIR with time-varying transmission](./feb-1-ebola/index.html#39)
     - [Measles worksheet](./jan30-timesteps-measles-seir/index.html) [[PDF](./jan30-timesteps-measles-seir/measles-handout.pdf)] | [[Code](https://github.com/mkiang/epi501_review/tree/master/jan30-timesteps-measles-seir/code)]
         - [Measles SIR](./jan30-timesteps-measles-seir/index.html#4)
         - [Time-steps are arbitrary](./jan30-timesteps-measles-seir/index.html#12)
