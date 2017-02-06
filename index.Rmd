@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Table of Contents (reverse chronological)
 
-- [**Common Error Messages**](./errors.htlm)
+- [**Common Error Messages**](./errors.html)
 
 - Week 2 (February 3, 2017 lab) -- Revised 2/3/2017
     - [Ebola worksheet](./feb-1-ebola/index.html) [[PDF](./feb-1-ebola/ebola-handout.pdf)] | [[Code](https://github.com/mkiang/epi501_review/tree/master/feb-1-ebola/code)]
@@ -42,5 +42,9 @@ knitr::opts_chunk$set(echo = TRUE)
         - [Make an SIR with births/deaths](./jan27-intro-to-odes/index.html#77)
 
 - Week 0 (January 23, 2017) 
+    - [Swirl Tutorial](http://swirlstats.com/students.html)
     - [Introduction to R](./jan25-intro-to-r/index.html)
     - [Shiny app for ODE models](https://mkiang.shinyapps.io/DiseaseDynamics/)
+
+## Source
+You can find the source code along with all class code and PDFs on [this project's GitHub page](https://github.com/mkiang/epi501_review).
