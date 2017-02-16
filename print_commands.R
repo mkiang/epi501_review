@@ -16,3 +16,8 @@ system(paste0(phantom, decktape,
 system(paste0(phantom, decktape, 
               working_dir, "feb-1-ebola/index.html ", 
               working_dir, "feb-1-ebola/ebola-handout.pdf"))
+
+## Networks
+system(paste0(phantom, decktape, 
+working_dir, "feb-17-networks/index.html ", 
+working_dir, "feb-17-networks/networks-handout.pdf"))
