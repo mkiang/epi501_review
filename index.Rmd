@@ -13,7 +13,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - [**Common Error Messages**](./errors.html)
 
-- Week 2 (February 3, 2017 lab) -- Revised 2/3/2017
+- Week 4 (February 17, 2017) - Revised 2/16/2017
+    - [Network models worksheet](./feb-17-networks/index.html)
+- Week 3 (February 10, 2017) — No lab
+- Week 2 (February 3, 2017 lab) — Revised 2/3/2017
     - [Ebola worksheet](./feb-1-ebola/index.html) [[PDF](./feb-1-ebola/ebola-handout.pdf)] | [[Code](https://github.com/mkiang/epi501_review/tree/master/feb-1-ebola/code)]
         - [SEIR with case fatality](./feb-1-ebola/index.html#4)
         - [Track total counts and total deaths](./feb-1-ebola/index.html#14)
