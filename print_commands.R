@@ -26,3 +26,8 @@ system(paste0(phantom, decktape,
 system(paste0(phantom, decktape, 
               working_dir, "mar-6-networks/index.html ", 
               working_dir, "mar-6-networks/contact-networks-handout.pdf"))
+
+## Final review
+system(paste0(phantom, decktape, 
+              working_dir, "mar-6-review/index.html ", 
+              working_dir, "mar-6-review/final-review.pdf"))

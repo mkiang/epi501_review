@@ -28,6 +28,8 @@ xaringan::summon_remark()
 
 1. Vaccinations
 
+1. General tips
+
 ---
 
 class: center, middle, inverse
@@ -60,7 +62,7 @@ Provides a simple threshold:
 
 --
 
-### What if the population is not entire susceptible?
+### What if the population is not entirely susceptible?
 
 --
 
@@ -88,8 +90,7 @@ Effective reproductive number, $R_e = R_0 x$ where $x$ is the proportion of cont
 ---
 ### When do we need to worry about mortality in estimates?
 
---
-When the duration is long relative to the infectious period. For example, see Lecture 3, Slide 17 and 18 for comparing mumps and HIV.
+Discuss. (Recall Lecture 3, Slide 17 and 18 in comparing mumps and HIV.)
 
 --
 
@@ -154,6 +155,8 @@ $$p_c = 1 - \frac{1}{R_0}$$
 
 "Leaky", "all-or-nothing", or "waning". See Lecture 5, Slide 28.
 
+--
+
 ### Know how to incorporate vaccination in your model
 
 See Lecture 5, Slide 25.
@@ -171,7 +174,8 @@ Use the simplest model that you can justify (i.e., don't make age-specific compa
 
 Remember: heterogeneity is bad. Spatial heterogeneity, network structures, age effects, etc. Compartmental models assume mass action.
 
+Probably useful to form groups and just spend an hour going over the quiz and comparing answers. Given how open-ended the quiz was, it is useful to know how other people would address the same question.
+
 ---
 class: center, middle, inverse
-# That's it.
-## Thanks
+# You're going to be fine
