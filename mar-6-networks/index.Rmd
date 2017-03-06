@@ -18,10 +18,10 @@ options(htmltools.dir.version = FALSE, digits = 4)
 
 class: center, middle
 # Download the code.red[*]
-## [https://git.io/vDSzh](https://git.io/vDSzh)
+## [https://git.io/vy8vG](https://git.io/vy8vG)
 
 # Also download the data
-## [https://git.io/vDSgT](https://git.io/vDSgT)
+## [https://git.io/vy8vO](https://git.io/vy8vO)
 
 ---
 class: center, middle
