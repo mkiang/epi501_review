@@ -13,9 +13,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - [**Common Error Messages**](./errors.html)
 
-- Week 7 (March 3, 2017)
+- Week 7 (March 6, 2017)
     - Final Review (Coming soon)
-    - [Contact network models](./mar-06-networks/index.html) [[PDF](./mar-6-networks/contact-networks-handout.pdf)] | [[Code](https://github.com/mkiang/epi501_review/tree/master/mar-6-networks/code)] | [[Data](https://github.com/mkiang/epi501_review/tree/master/mar-6-networks/data)]
+    - [Contact network models](./mar-6-networks/index.html) [[PDF](./mar-6-networks/contact-networks-handout.pdf)] | [[Code](https://github.com/mkiang/epi501_review/tree/master/mar-6-networks/code)] | [[Data](https://github.com/mkiang/epi501_review/tree/master/mar-6-networks/data)]
 - Week 4 (February 17, 2017) - Revised 2/16/2017
     - [Network models worksheet](./feb-17-networks/index.html) [[PDF](./feb-17-networks/networks-handout.pdf)] | [[Code](https://github.com/mkiang/epi501_review/tree/master/feb-17-networks/code)] | [[Data](https://github.com/mkiang/epi501_review/tree/master/feb-17-networks/data)]
 - Week 3 (February 10, 2017) — No lab
