@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Final Review</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Mathew Kiang" />
+    <link rel="stylesheet" href="slides_style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Final Review
+### Mathew Kiang
+### 3/6/2017
+
+---
+
+
+
+
+## Agenda
+
+1. Structure
+
+1. `\(R_0\)`: The reproductive number
+
+1. Case fatality rate
+
+1. Vaccinations
+
+---
+
+class: center, middle, inverse
+# Structure of the final
+
+---
+
+class: center, middle, inverse
+# Reproductive number
+
+---
+### What is the reproductive number?
+
+--
+
+`\(R_0\)` is "the expected number of secondary cases produced by a typical infected individual early in an epidemic". 
+
+That is, how many people are expected to become infected from a single infectious person in an otherwise susceptible population?
+
+--
+### Why is it useful?
+
+--
+
+Provides a simple threshold:
+
+- If `\(R_0 &gt; 1\)`, disease is epidemic
+- If `\(R_0 = 1\)`, disease is endemic
+- If `\(R_0 &lt; 1\)`, disease will die out
+
+--
+
+### What if the population is not entire susceptible?
+
+--
+
+Effective reproductive number, `\(R_e = R_0 x\)` where `\(x\)` is the proportion of contacts that are susceptible.
+
+---
+### How do we calculate it ($R_0$)?
+
+--
+1. Directly fitting curve to epidemic trajectory
+    - See Althaus Ebola paper where he used maximum likelihood to fit curves to the data
+1. From equilibrium values
+    - `\(R_0 = N/S_{eq}\)` (See Lecture 3, Slide 16)
+1. From model parameters
+    - In a simple SIR, `$$R_0 = \frac{infection}{contact} \times \frac{contacts}{time} \times \frac{time}{infection} = \frac{\beta}{v}=\frac{bk}{v}$$`
+    - For more complex models, it is just the rate that people enter the infectious compartment over the rate people leave the infectious compartment (through death, recovery, or some other mechanism)
+    - See Lecture 3, Slide 7
+1. From age of first infection
+    - For rectangular age structures, `\(R_0 = L/A\)`
+    - For pyramidal age structures, `\(R_0 = 1 + L/A\)`
+    - Where `\(A\)` is mean age of (first) infection) and `\(L\)` is average life span
+    - See Lecture 3, Slide 19
+1. (Also seroprevalence data, but don't use this for final)
+
+---
+### When do we need to worry about mortality in estimates?
+
+--
+When the duration is long relative to the infectious period. For example, see Lecture 3, Slide 17 and 18 for comparing mumps and HIV.
+
+--
+
+When in doubt, just calculate both and see what the percent difference is. For example, 
+
+`$$R_0 = \frac{bk}{v} \quad \textbf{vs} \quad R_{0}^* = \frac{bk}{v+d}$$`
+
+Where `\(v\)` is recovery and `\(d\)` is death rate.
+
+--
+### Should you use a fancy method?
+
+--
+
+No.
+---
+
+class: center, middle, inverse
+# Case fatality rate
+
+---
+### What is the case fatality rate?
+
+--
+
+Proportion of deaths from (some defined set of) cases over the course of the disease.
+
+--
+### What are difficulties with estimating it?
+
+Discuss.
+
+--
+### Think about how CFR affects dynamics of your disease
+
+For example, High CFR vs Low CFR in context of no recovery vs lifetime immunity.
+--
+
+### Know how to include it in your equations
+
+---
+
+class: center, middle, inverse
+# Vaccinations and herd immunity
+
+---
+### What is the critical vaccination threshold?
+
+--
+Proportion of the population you need to vaccinate in order to eliminate a disease
+`$$p_c = 1 - \frac{1}{R_0}$$`
+
+--
+
+### What is coverage and efficacy?
+
+--
+
+### Ways vaccines can be imperfect?
+
+--
+
+"Leaky", "all-or-nothing", or "waning". See Lecture 5, Slide 28.
+
+### Know how to incorporate vaccination in your model
+
+See Lecture 5, Slide 25.
+
+---
+# Tips
+
+Review all lectures (but especially Lecture 3 and 5)
+
+Know the basic models (SI, SIR, SIER) and when they are appropriate
+
+For more complicated models (e.g., SIWR, Ross-MacDonald), you should at least know roughly what data you would need to estimate parameters, points of intervention, etc. Review Lecture 6.
+
+Use the simplest model that you can justify (i.e., don't make age-specific compartments if mass action assumption holds)
+
+Remember: heterogeneity is bad. Spatial heterogeneity, network structures, age effects, etc. Compartmental models assume mass action.
+
+---
+class: center, middle, inverse
+# That's it.
+## Thanks
+    </textarea>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('showSlide', function (slide) {setTimeout(function() {window.dispatchEvent(new Event('resize'));}, 100)});</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

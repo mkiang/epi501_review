@@ -58,6 +58,11 @@ net1 <- as.network(mat1, directed = FALSE)
 ```
 
 ---
+## Take a look at the data
+```{r}
+print(mat1)
+```
+---
 ## Plot the network
 
 ```{r, fig.height=6, fig.width=9, message=FALSE, warning=FALSE}
@@ -103,7 +108,7 @@ Play with the parameters and see how this affects the plots.
 
 ---
 ## 500 simulations plotted
-```{r, echo=FALSE, fig.height=6.5, fig.width=11}
+```{r, echo=FALSE, fig.height=6.5, fig.width=11, cache=TRUE}
 ## This just loops through n_sims times and makes that many lines/simulations
 ## NOTE: There's a difference between matplot and matlines
 n_sims <- 500
@@ -128,7 +133,7 @@ class: center, middle
 
 ## Plot the network
 
-```{r, fig.height=6, fig.width=9, message=FALSE, warning=FALSE}
+```{r, fig.height=6, fig.width=9, message=FALSE, warning=FALSE, cache=TRUE}
 vert_cols <- rep("black", network.size(net1))
 vert_cols[c(7, 10)] <- c("green", "red")
 plot(net1, label = network.vertex.names(net1), vertex.col = vert_cols)
@@ -139,7 +144,7 @@ Let's plot Node 7 (green) vs Node 10 (red). Note that Node 7 has only one edge, 
 ---
 
 ## Node 7 (green) vs Node 10 (red)
-```{r, eval=FALSE}
+```{r, eval=FALSE, cache=TRUE}
 n_sims <- 2000
 for (i in 1:n_sims) {
     sim <- networkPractical(net1, .2, .2, runTime = 50, start_infected = 7)
@@ -163,7 +168,7 @@ Modified the loop from before so that now we run two simulations -- one starting
 
 ---
 ## Node 7 (green) vs Node 10 (red)
-```{r, echo=FALSE, fig.height=6.5, fig.width=11}
+```{r, echo=FALSE, fig.height=6.5, fig.width=11, cache=TRUE}
 n_sims <- 2000
 for (i in 1:n_sims) {
     sim <- networkPractical(net1, .2, .2, runTime = 50, start_infected = 7, verbose = FALSE)

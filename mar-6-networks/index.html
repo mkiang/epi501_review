@@ -51,6 +51,29 @@ net1 &lt;- as.network(mat1, directed = FALSE)
 ```
 
 ---
+## Take a look at the data
+
+```r
+print(mat1)
+```
+
+```
+## # A tibble: 82 × 2
+##    Names Contacts
+##    &lt;int&gt;    &lt;int&gt;
+## 1      1       31
+## 2      1       65
+## 3      2       61
+## 4      2       65
+## 5      3       10
+## 6      4       16
+## 7      5       16
+## 8      6       44
+## 9      7       44
+## 10     8       16
+## # ... with 72 more rows
+```
+---
 ## Plot the network
 
 
@@ -59,7 +82,7 @@ net1 &lt;- as.network(mat1, directed = FALSE)
 plot(net1, label = network.vertex.names(net1))
 ```
 
-![](index_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
 
 ---
 ## Plot the degree distribution
@@ -73,7 +96,7 @@ for(i in 1:network.size(net1)) {
 hist(deg)
 ```
 
-![](index_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
 ---
 class: center, middle
@@ -103,7 +126,7 @@ Play with the parameters and see how this affects the plots.
 
 ---
 ## 500 simulations plotted
-![](index_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
 
 ---
 class: center, middle
@@ -120,7 +143,7 @@ vert_cols[c(7, 10)] &lt;- c("green", "red")
 plot(net1, label = network.vertex.names(net1), vertex.col = vert_cols)
 ```
 
-![](index_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
 
 Let's plot Node 7 (green) vs Node 10 (red). Note that Node 7 has only one edge, while Node 10 has 18. 
 
@@ -152,7 +175,7 @@ Modified the loop from before so that now we run two simulations -- one starting
 
 ---
 ## Node 7 (green) vs Node 10 (red)
-![](index_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
 
 What does the variation between the two colors tell you? What does this imply for network structure and infectious diseases?
 ---
