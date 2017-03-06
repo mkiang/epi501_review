@@ -19,5 +19,10 @@ system(paste0(phantom, decktape,
 
 ## Networks
 system(paste0(phantom, decktape, 
-working_dir, "feb-17-networks/index.html ", 
-working_dir, "feb-17-networks/networks-handout.pdf"))
+              working_dir, "feb-17-networks/index.html ", 
+              working_dir, "feb-17-networks/networks-handout.pdf"))
+
+## Networks part 2
+system(paste0(phantom, decktape, 
+              working_dir, "mar-6-networks/index.html ", 
+              working_dir, "mar-6-networks/contact-networks-handout.pdf"))
