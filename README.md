@@ -1,7 +1,9 @@
-## Epidemiology 501 -- Dynamics of Infectious Diseases
 
-Code, data, and slides for each weekly review section of the Spring 1 2018 EPI 501 course taught by Professor Caroline Buckee at HSPH. 
+EPI 501 -- Dynamics of Infectious Diseases
+------------------------------------------
 
-I will update the notes about 2 days after each lecture. 
+Code, data, and slides for each weekly review section of the Spring 1 2018 EPI 501 course taught by Professor Caroline Buckee at HSPH.
 
-To see the slides, go to [the GitHub page here](https://mkiang.github.io/epi501_review/): [https://mkiang.github.io/epi501_review/](https://mkiang.github.io/epi501_review/)
+I will update the notes about 2 days after each lecture.
+
+To see the slides, go to <https://mkiang.github.io/epi501_review/>
