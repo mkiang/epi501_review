@@ -2,5 +2,5 @@
 .Rhistory
 *.Rproj*
 .Rproj.user
-
 mar-6-networks/data/named_contact_network.csv
+.DS_Store

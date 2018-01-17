@@ -6,8 +6,8 @@ output:
   html_document:
     toc: true
     toc_depth: 2
-    toc_float: true
-    number_sections: true
+    toc_float: false
+    number_sections: false
 ---
 
 # `there is no package called ‘deSolve’`

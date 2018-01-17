@@ -10,49 +10,13 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Table of Contents (reverse chronological)
-
 - [**Common Error Messages**](./errors.html)
 
-- Week 7 (March 6, 2017)
-    - [Final Review](./mar-6-review/index.html) [[PDF](./mar-6-review/final-review.pdf)]
-    - [Contact network models](./mar-6-networks/index.html) [[PDF](./mar-6-networks/contact-networks-handout.pdf)] | [[Code](https://github.com/mkiang/epi501_review/tree/master/mar-6-networks/code)] | [[Data](https://github.com/mkiang/epi501_review/tree/master/mar-6-networks/data)]
-
-- Week 4 (February 17, 2017) - Revised 2/16/2017
-    - [Network models worksheet](./feb-17-networks/index.html) [[PDF](./feb-17-networks/networks-handout.pdf)] | [[Code](https://github.com/mkiang/epi501_review/tree/master/feb-17-networks/code)] | [[Data](https://github.com/mkiang/epi501_review/tree/master/feb-17-networks/data)]
-
-- Week 3 (February 10, 2017) — No lab
-- Week 2 (February 3, 2017 lab) — Revised 2/3/2017
-    - [Ebola worksheet](./feb-1-ebola/index.html) [[PDF](./feb-1-ebola/ebola-handout.pdf)] | [[Code](https://github.com/mkiang/epi501_review/tree/master/feb-1-ebola/code)]
-        - [SEIR with case fatality](./feb-1-ebola/index.html#4)
-        - [Track total counts and total deaths](./feb-1-ebola/index.html#14)
-        - [Effects of time-varying transmission probability](./feb-1-ebola/index.html#19)
-        - [R0 and time-varying transmission probability](./feb-1-ebola/index.html#31)
-        - [SEIR with time-varying transmission](./feb-1-ebola/index.html#39)
-    - [Measles worksheet](./jan30-timesteps-measles-seir/index.html) [[PDF](./jan30-timesteps-measles-seir/measles-handout.pdf)] | [[Code](https://github.com/mkiang/epi501_review/tree/master/jan30-timesteps-measles-seir/code)]
-        - [Measles SIR](./jan30-timesteps-measles-seir/index.html#4)
-        - [Time-steps are arbitrary](./jan30-timesteps-measles-seir/index.html#12)
-        - [Chickenpox and mumps](./jan30-timesteps-measles-seir/index.html#18)
-        - [Plot multiple things](./jan30-timesteps-measles-seir/index.html#23)
-        - [Find max infections](./jan30-timesteps-measles-seir/index.html#29)
-        - [Boolean vectors](./jan30-timesteps-measles-seir/index.html#45)
-        - [SEIR models](./jan30-timesteps-measles-seir/index.html#54)
-        - [Open SEIR models](./jan30-timesteps-measles-seir/index.html#68)
-        - [Plotting subsets](./jan30-timesteps-measles-seir/index.html#54)
-        - [What is a for-loop](./jan30-timesteps-measles-seir/index.html#79)
-        - [How birth/death rate affects I](./jan30-timesteps-measles-seir/index.html#98)
-
-- Week 1 (January 27, 2017 lab) -- Revised 2/1/2017
-    - [Introduction to ODEs in R](./jan27-intro-to-odes/index.html)  [[PDF](./jan27-intro-to-odes/jan27-intro-to-r.pdf)] | [[Code](https://github.com/mkiang/epi501_review/tree/master/jan27-intro-to-odes/code)]
-        - [SIR model line-by-line](./jan27-intro-to-odes/index.html#13)
-        - [Plotting simulations](./jan27-intro-to-odes/index.html#58)
-        - [Make an SI model](./jan27-intro-to-odes/index.html#68)
-        - [Make an SIS model](./jan27-intro-to-odes/index.html#74)
-        - [Make an SIR with births/deaths](./jan27-intro-to-odes/index.html#77)
-
-- Week 0 (January 23, 2017) 
+- Week 0 (January 27, 2017) 
     - [Swirl Tutorial](http://swirlstats.com/students.html)
-    - [Introduction to R](./jan25-intro-to-r/index.html)
-    - [Shiny app for ODE models](https://mkiang.shinyapps.io/DiseaseDynamics/)
+    - [Software Carpentry](https://swcarpentry.github.io/r-novice-gapminder/): Strongly recommend you do sections 0 to 3 if you've never used `R` before. This will get you up and running with the software and introduce you to RStudio.
+    - [Shiny app for ODE models](https://mkiang.shinyapps.io/DiseaseDynamics/): Example of what we'll be doing throughout the course.
 
-## Source
-You can find the source code along with all class code and PDFs on [this project's GitHub page](https://github.com/mkiang/epi501_review).
+## Source / Archive
+- You can find the source code along with all class code and PDFs on [this project's GitHub page](https://github.com/mkiang/epi501_review).
+- You can find slids from [Spring 2017 here](./spring_2017/index.html).
