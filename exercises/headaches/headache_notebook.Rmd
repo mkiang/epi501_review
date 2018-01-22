@@ -5,7 +5,7 @@ output: html_notebook
 
 ## Introduction
 
-This is annotated code for the headache exercise (i.e., modeling non-infectious diseases). If you're familiar with `R` and prefer to use the raw `R` code, check out [`'headache_exercise.R'`](./headache_exercise.R)
+This is annotated code for the headache exercise (i.e., modeling non-infectious diseases). If you're familiar with `R` and prefer to use the raw `R` code, check out [`headache_exercise.R`](./headache_exercise.R)
 
 ## Setting up
 
