@@ -92,3 +92,4 @@ matplot(x = result[, "time"],
         xlim = c(0, 100))
 ```
 
+Now we see that after about 60 time steps, both those with headaches and those without headaches reaches 0. Why?
