@@ -2,6 +2,11 @@
 title: "EPI 501: Headache exercise (annotated)"
 output: html_notebook
 ---
+```{r include=FALSE}
+## This is just for rendering the HTML page. 
+## Ignore if you're using the raw code.
+knitr::opts_chunk$set(echo = TRUE)
+```
 
 ## Introduction
 
