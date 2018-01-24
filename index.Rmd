@@ -15,6 +15,10 @@ knitr::opts_chunk$set(echo = TRUE)
 - Week 1 (January 22, 2018)
     - [Introduction to `R`, discrete time models, non-infectious ODE models.](./20180124_intro_to_R_headaches/index.html) 
     - Download [`headache_exercises.zip`](./exercises/01_headaches/headache_exercises.zip)
+        - Or download the code here (not recommended):
+            - [`discrete_births_and_deaths.R`](https://raw.githubusercontent.com/mkiang/epi501_review/master/exercises/01_headaches/discrete_births_and_deaths.R)
+            - [`headache_discrete.R`](https://raw.githubusercontent.com/mkiang/epi501_review/master/exercises/01_headaches/headache_discrete.R)
+            - [`headache_ode.R`](https://raw.githubusercontent.com/mkiang/epi501_review/master/exercises/01_headaches/headache_ode.R)
     - Annotated code [Coming soon]
 
 - Week 0 (January 16, 2018) 
