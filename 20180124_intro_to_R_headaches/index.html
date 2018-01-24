@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hands-on intro to R</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Mathew Kiang" />
+    <link rel="stylesheet" href="slides_style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Hands-on intro to R
+## (And maybe some modeling)
+### Mathew Kiang
+### 1/24/2018
+
+---
+
+
+
+
+# Goals for today
+
+1. Everybody has `R`, RStudio, and `deSolve` installed and can run code
+
+--
+
+2. Go through discrete time models of population and headaches
+
+--
+
+3. Intro to non-infectious ODE model of headaches
+
+--
+
+4. Modify an ODE model
+
+---
+
+class: center, middle, inverse
+## Did anybody have trouble installing R?
+
+---
+
+class: center, middle, inverse
+## Can you run this command with no errors?
+
+
+```r
+library(deSolve)
+```
+
+---
+
+class: center, middle, inverse
+## Do you have the file from Canvas?
+Download via Canvas
+
+Also download from: https://goo.gl/2YDChe
+
+---
+# Tips
+
+- In `RStudio` your code in the source panel (upper left) and use **CMD+Enter** or **Ctrl+Enter** to run it in the console
+    - This allows you to build on old models without deleting your code
+
+--
+
+- Comment (`#`) your code as you build models (or as Caroline builds them)
+    - Trust me, in a week you'll forget why you wrote something some way
+
+--
+
+- Drawing the model and/or writing the equations first helps
+    - A lot
+
+--
+
+- You will be given boilerplate code
+    - Always
+
+--
+
+- Use `?` to see the arguments for functions
+
+--
+
+- Use **ALT + -** to quickly make an assignment (&lt;-)
+
+--
+
+- It'll be ok. We don't expect you to be `R` masters
+
+---
+# Discrete birth and deaths
+
+- Here is `discrete_births_and_deaths.R` with comments removed:
+
+
+```r
+population &lt;- 1000
+time_seq &lt;- 1:500  
+birth_rate &lt;- 0.4
+death_rate &lt;- 0.4
+
+dat &lt;- NULL
+for (t in time_seq) {
+    new_population &lt;- population + round(birth_rate*population) - 
+        round(death_rate*population)
+
+    dat &lt;- rbind(dat, new_population)
+
+    population &lt;- new_population
+}
+
+plot(dat[, 1], type = "l")
+```
+
+- What's happening in this code? Line-by-line.
+- What do we expect to see when we plot this code? Why?
+- What do you need to do to make the line go up/down?
+
+---
+
+# Hands-on / Live coding
+
+- Please form groups with 1-2 other students. Every group should have at least one person who went through the Swirl or SW tutorials.
+
+---
+class: center, middle, inverse
+# That's it.
+## Thanks
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {window.dispatchEvent(new Event('resize'));});
+(function() {var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler"); if (!r) return; s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }"; d.head.appendChild(s);})();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

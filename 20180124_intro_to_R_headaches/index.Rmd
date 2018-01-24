@@ -1,0 +1,128 @@
+---
+title: "Hands-on intro to R"
+subtitle: "(And maybe some modeling)"
+author: "Mathew Kiang"
+date: "1/24/2018"
+output:
+  xaringan::moon_reader:
+    css: "slides_style.css"
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+# Goals for today
+
+1. Everybody has `R`, RStudio, and `deSolve` installed and can run code
+
+--
+
+2. Go through discrete time models of population and headaches
+
+--
+
+3. Intro to non-infectious ODE model of headaches
+
+--
+
+4. Modify an ODE model
+
+---
+
+class: center, middle, inverse
+## Did anybody have trouble installing R?
+
+---
+
+class: center, middle, inverse
+## Can you run this command with no errors?
+
+```{r eval=FALSE}
+library(deSolve)
+```
+
+---
+
+class: center, middle, inverse
+## Do you have the file from Canvas?
+Download via Canvas
+
+Also download from: https://goo.gl/2YDChe
+
+---
+# Tips
+
+- In `RStudio` your code in the source panel (upper left) and use **CMD+Enter** or **Ctrl+Enter** to run it in the console
+    - This allows you to build on old models without deleting your code
+
+--
+
+- Comment (`#`) your code as you build models (or as Caroline builds them)
+    - Trust me, in a week you'll forget why you wrote something some way
+
+--
+
+- Drawing the model and/or writing the equations first helps
+    - A lot
+
+--
+
+- You will be given boilerplate code
+    - Always
+
+--
+
+- Use `?` to see the arguments for functions
+
+--
+
+- Use **ALT + -** to quickly make an assignment (<-)
+
+--
+
+- It'll be ok. We don't expect you to be `R` masters
+
+---
+# Discrete birth and deaths
+
+- Here is `discrete_births_and_deaths.R` with comments removed:
+
+```{r eval=FALSE}
+population <- 1000
+time_seq <- 1:500  
+birth_rate <- 0.4
+death_rate <- 0.4
+
+dat <- NULL
+for (t in time_seq) {
+    new_population <- population + round(birth_rate*population) - 
+        round(death_rate*population)
+
+    dat <- rbind(dat, new_population)
+
+    population <- new_population
+}
+
+plot(dat[, 1], type = "l")
+```
+
+- What's happening in this code? Line-by-line.
+- What do we expect to see when we plot this code? Why?
+- What do you need to do to make the line go up/down?
+
+---
+
+# Hands-on / Live coding
+
+- Please form groups with 1-2 other students. Every group should have at least one person who went through the Swirl or SW tutorials.
+
+---
+class: center, middle, inverse
+# That's it.
+## Thanks
