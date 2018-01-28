@@ -1,0 +1,158 @@
+---
+title: "Annotated code for `headache_ode.R`"
+author: "Mathew Kiang"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: 
+  html_notebook:
+    toc: true
+---
+
+## Introduction
+
+This is annotated code for the [`headache_ode.R`](https://raw.githubusercontent.com/mkiang/epi501_review/master/exercises/01_headaches/headache_ode.R) file. For convenience, the code from that file is shown below (with comments removed):
+
+```{r eval=FALSE, message=FALSE, warning=FALSE}
+library(deSolve)
+
+times <- seq(0, 5000, by = 1)
+yinit <- c(no_headache = 0.95, headache = 0.05)
+parameters <- c(incidence = 0.02, recovery = 0.01, 
+                birth = 0.1, death = 0.2)
+
+headache_model <- function(times, yinit, parameters) {
+    with(as.list(c(yinit, parameters)), {
+
+        dno_headache <- recovery*headache - 
+            incidence*no_headache - death*no_headache 
+
+        dheadache <- incidence*no_headache - recovery*headache - 
+            death*headache + birth*(headache+no_headache)
+
+        comparts <- list(c(dno_headache, dheadache))
+
+        return(comparts)
+    })
+}
+
+result <- as.data.frame(ode(y = yinit, times = times, 
+                            func = headache_model, parms = parameters))
+
+matplot(x = result[, "time"], 
+        y = result[, c("no_headache", "headache")], 
+        type = "l")
+```
+
+## Calling `deSolve`
+```{r}
+library(deSolve)
+```
+
+To solve differential equations, we use the `ode()` command. This command comes from the `deSolve` package, which means we must load the package before we can run the command. 
+
+All scripts that use `ode()` will have the `library(deSolve)` command at the top.
+
+## Setting parameters
+```{r}
+times <- seq(0, 5000, by = 1)
+yinit <- c(no_headache = 0.95, headache = 0.05)
+parameters <- c(incidence = 0.02, recovery = 0.01, 
+                birth = 0.1, death = 0.2)
+```
+
+Like the discrete version, we need to set up initial values, parameter values, and a time sequence in order for `ode()` to work. Here we will use `seq(0, 5000, by = 1)` to specify that we want a vector of numbers from 0 to 5,000 in steps of 1. 
+
+- Unlike the discrete model, we won't need to use integers and we could have done `seq(0, 5000, by = .0001)`. This would result in our epidemic curves being much smoother because `ode()` would evaluate our model at every .0001 units instead of every 1 unit. However, this would also result in much longer computation time. Choosing the length of your time sequence and the resolution will be a balancing act you'll need to figure out throughout the course, but we will generally give you good starting values.
+
+- We store all of our initial values in a variable called `yinit`. This is a named vector so that when we call `yinit` it will result in one element called `no_headache` and one called `headache`. When you add or remove compartments, you'll need to adjust the `yinit` variable accordingly. There should always be as many elements as there are compartments.
+
+```{r}
+print(yinit)
+```
+
+- Similarly, we will create a named vector to store all our parameters. When you modify your compartments with new parameters, you'll need to specify the value of these parameters in this variable.
+
+```{r}
+print(parameters)
+```
+
+## Creating the model
+
+Suppose this is our model of headaches:
+
+$$
+\begin{align}
+\frac{d N}{dt} &= \gamma P - \beta N - dN \\
+\frac{d P}{dt} &= \beta N - \gamma P - dP + b(N+P)
+\end{align}
+$$
+What is this model saying about births and deaths?
+
+Unlike the discrete model where we created our model inside of a `for()` loop, for ODE models, we will create a function that contains our models. This function will require three inputs: (1) a time sequence, (2) initial values of each compartment, and (3) the values of any parameters. In addition, we're going to call this function `headache_model`.
+
+```{r}
+headache_model <- function(times, yinit, parameters) {
+    with(as.list(c(yinit, parameters)), {
+
+        dno_headache <- recovery*headache - 
+            incidence*no_headache - death*no_headache 
+
+        dheadache <- incidence*no_headache - recovery*headache - 
+            death*headache + birth*(headache+no_headache)
+
+        comparts <- list(c(dno_headache, dheadache))
+
+        return(comparts)
+    })
+}
+```
+
+You will only be expected to modify things inside of the `with` block. Specifically the `dno_headache`, `dheadache`, `comparts`, and `return()` lines. The `with()` command simply allows us to refer to the named elements in our `yinit` and `parameter` variables without the need to specify the object they are in. For example, instead of specifying `parameters$recovery * yinit$headache`, we can simply say `recovery*headache`.
+
+In order for `ode()` to work, we must `return` a list of compartments. We create `comparts` which stores our compartments as a list using the `list()` command.
+
+## Running our model
+Now that we have our model (as a function), we can use `ode()` to solve it:
+
+```{r}
+result <- as.data.frame(ode(y = yinit, times = times, 
+                            func = headache_model, parms = parameters))
+
+```
+
+`ode()` will return a named list, but in general, we prefer `data.frame`s which are easier to work with. Thus we simply run `ode()` and convert the output to a dataframe using `as.data.frame()`, storing the result in `result`.
+
+
+## Plot the results
+Let's see what `ode()` returned:
+```{r}
+head(result)
+```
+
+Note that `ode()` appended a column named `time` to our model in addition to the compartments.
+
+We'll use `matplot()` again to plot the results:
+
+```{r}
+matplot(x = result[, "time"], 
+        y = result[, c("no_headache", "headache")], 
+        type = "l")
+```
+
+Above, we referred to the columns by name, but we can also refer to them by position:
+```{r, eval=FALSE}
+matplot(x = result[, 1], 
+        y = result[, 2:3], 
+        type = "l")
+```
+
+### Trimming the x-axis
+We can take a close look at the beginning of our model by specifying our x-axis limits with the `xlim` option. This option takes a vector of length 2 with the first element as the lower bound and the second element as the upper bound.
+
+```{r}
+matplot(x = result[, 1], 
+        y = result[, 2:3], 
+        type = "l", 
+        xlim = c(0, 50))
+```
+
+Try playing with other parameters.

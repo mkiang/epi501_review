@@ -19,7 +19,9 @@ knitr::opts_chunk$set(echo = TRUE)
             - [`discrete_births_and_deaths.R`](https://raw.githubusercontent.com/mkiang/epi501_review/master/exercises/01_headaches/discrete_births_and_deaths.R)
             - [`headache_discrete.R`](https://raw.githubusercontent.com/mkiang/epi501_review/master/exercises/01_headaches/headache_discrete.R)
             - [`headache_ode.R`](https://raw.githubusercontent.com/mkiang/epi501_review/master/exercises/01_headaches/headache_ode.R)
-    - Annotated code [Coming soon]
+    - Annotated code:
+        - For the [`headache_discrete.R`](./20180124_intro_to_R_headaches/anno_code/discrete_headaches.nb.html) file.
+        - For the [`headache_ode.R`](./20180124_intro_to_R_headaches/anno_code/ode_headaches.nb.html) file.
 
 - Week 0 (January 16, 2018) 
     - [Software Carpentry](https://swcarpentry.github.io/r-novice-gapminder/): Strongly recommend you do sections 0 to 3 if you've never used `R` before. This will get you up and running with the software and introduce you to RStudio.

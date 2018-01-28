@@ -29,7 +29,7 @@ headache_model <- function(times, yinit, parameters) {
         comparts <- list(c(dno_headache, dheadache))
         
         ## Don't forget you need to return your compartments
-        return(comparts))
+        return(comparts)
     })
 }
 

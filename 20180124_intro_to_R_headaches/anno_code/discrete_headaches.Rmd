@@ -1,0 +1,195 @@
+---
+title: "Annotated code for `headache_discrete.R`"
+author: "Mathew Kiang"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: 
+  html_notebook:
+    toc: true
+---
+
+## Introduction
+
+This is annotated code for the [`headache_discrete.R`](https://raw.githubusercontent.com/mkiang/epi501_review/master/exercises/01_headaches/headache_discrete.R) file. For convenience, the code from that file is shown below (with comments removed):
+
+```{r eval=FALSE, message=FALSE, warning=FALSE}
+N_t <- 500  
+P_t <- 0 
+incidence <- 0.05 
+recovery <- 0.9  
+
+dat <- NULL
+timesteps <- 1:100  
+
+for (t in timesteps) {
+    N_t1 <- N_t - round(incidence*N_t) + round(recovery*P_t) 
+
+    P_t1 <- P_t + round(incidence*N_t) - round(recovery*P_t)
+
+    dat <- rbind(dat, c(N_t1, P_t1)) 
+
+    N_t <- N_t1 
+    P_t <- P_t1 
+}
+
+matplot(dat, xlab="time", ylab="number of people", type="l", lty = 1)
+legend("topright", col = 1:2, legend = c("no headache","headache"), lwd=1)
+```
+
+## Setting parameters
+The first four lines of the code just saves our parameters as easy-to-remember variables. `N_t` is the number of unaffected people at time zero. `P_t` is the number of affected people at time zero. The `incidence` and `recovery` variables just store the rate at which people transition from unaffected to affected or vice versa. 
+
+```{r}
+N_t <- 500  
+P_t <- 0 
+incidence <- 0.05 
+recovery <- 0.9 
+```
+
+## Storing data and time sequence
+
+```{r}
+dat <- NULL
+timesteps <- 1:100  
+```
+
+Next, we create an empty (i.e., `NULL`) variable called `dat`, which we will use to store our data. 
+
+- Note that every time you increment through a `for()` loop, all variables created within the loop are re-created. Thus, if you created `dat` inside of the `for()` loop, it would only store the very last observation. 
+
+We also create some sequence of time steps that we can iterate through, `timesteps`. The colon (`:`) operator in `R` is just a convenient way of making a vector of integers from `start:stop`.
+
+- Sequence generation is a very common operation in most programming languages.  One can also use several other sequence generators. See the help files for `seq()`, `seq_int()`, or `seq_along()` for other sequence generators.
+
+## The model
+Recall that this is a discrete time model, so we can run the model by incrementing steps rather than differentiating. Specifically, our model is:
+
+$$
+\begin{aligned}
+N_{t+1} &= N_t - \beta N_t + \gamma P_t \\
+P_{t+1} &= P_t - \gamma P_t + \beta N_t
+\end{aligned}
+$$
+
+Where $\beta$ and $\gamma$ are the `incidence` and `recovery` rates, respectively. These equations are represented as the `N_t1` and `P_t1` lines, respectively.
+```{r}
+for (t in timesteps) {
+    N_t1 <- N_t - round(incidence*N_t) + round(recovery*P_t) 
+
+    P_t1 <- P_t + round(incidence*N_t) - round(recovery*P_t)
+
+    dat <- rbind(dat, c(N_t1, P_t1)) 
+
+    N_t <- N_t1 
+    P_t <- P_t1 
+}
+```
+
+The `for (t in timesteps)` line is how `R` constructs a loop. We'll get more into loops later, but if you want a quick tutorial on `for()` loops, check out [my slides for last year's class](https://mkiang.github.io/epi501_review/spring_2017/jan30-timesteps-measles-seir/index.html#79). For now, we just need to know that everything inside the `{`curly brackets`}` will run as many times as there are objects in the `timestep` variable we created earlier. 
+
+Like most functions, the `dat <- rbind(dat, c(N_t1, P_t1))` line is easiest to understand if read inside out. 
+
+1. So starting inside, `c(N_t1, P_t1)` will take the results from the current time step and create a two-item vector. 
+1. The `rbind()` command simply performs glues two vectors together, by `r`ow. So `dat` will be on top, the `c(N_t1, P_t1)` will be glued beneath it as a new row.
+1. We then assign this new object to the `dat` name so that we keep adding rows as we go through our `for()` loop.
+
+Finally, the last two lines inside the loop update the compartments of our model before the next iteration (turning time `t+1` into time `t`).
+
+At the end of this loop, our `dat` object will now have two columns and 100 rows.
+
+## Plotting it
+
+Now we simply plot it. See `help(matplot)` for more information. When you do not supply an `x` argument to `matplot()` it simply plots each column of the matrix on the y-axis with equal-spaced numbers on the x-axis. The axis labels can be changed by using `xlab` and `ylab`. The type of plot is a line plot so we specify `line="l"`. And we want all the lines to be a solid (`1`) line so we specify the linetypes by using `lty = 1`.
+
+The `legend()` command adds a legend to our current plot in the `"topright"` corner. We specify the colors as `1:2` referring to the first column and second column. Similarly, the legend text is in the same order as the columns. The line width is set to 1 using `lwd=1`.
+
+```{r}
+matplot(dat, xlab="time", ylab="number of people", type="l", lty = 1)
+legend("topright", col = 1:2, legend = c("no headache","headache"), lwd=1)
+```
+
+It appears very little is happening in our plots after about time 10. We can limit the x-axis using `xlim` in the `matplot()` command. This option takes a vector of length two with the first being the lower bound and the second being the upper bound.
+
+dat <- NULL
+
+## Modifying parameters and time sequence
+Let's try a different set of parameters and see if we can get something more interesting.
+
+```{r}
+N_t <- 100000  
+P_t <- 0 
+incidence <- 0.075
+recovery <- 0.15 
+
+timesteps <- 1:100  
+```
+
+Then let's clear out the `dat` object again and re-run our loop.
+```{r}
+dat <- NULL
+for (t in timesteps) {
+    N_t1 <- N_t - round(incidence*N_t) + round(recovery*P_t) 
+
+    P_t1 <- P_t + round(incidence*N_t) - round(recovery*P_t)
+
+    dat <- rbind(dat, c(N_t1, P_t1)) 
+
+    N_t <- N_t1 
+    P_t <- P_t1 
+}
+```
+
+And plot the results:
+```{r}
+matplot(dat, xlab="time", ylab="number of people", type="l", lty = 1)
+legend("topright", col = 1:2, legend = c("no headache","headache"), lwd=1)
+```
+
+Now it looks like something is happening. Try other parameters on your own.
+
+## Adding births and deaths
+
+Suppose we are interested in adding births and deaths to our model. Further, assume everybody can have a child, but no children are born with headaches (or affected). Our model would look like this:
+
+$$
+\begin{aligned}
+N_{t+1} &= N_t - \beta N_t + \gamma P_t + bN_t + bP_t - dN_t \\ 
+P_{t+1} &= P_t - \gamma P_t + \beta N_t - dP_t
+\end{aligned}
+$$
+
+How would this look in our code? First, we would need some values for `b` and `d`:
+
+```{r}
+b <- .0001
+d <- .0002
+```
+
+Let's also make our timeline longer so we can see the long-term dynamics of adding births and deaths.
+
+```{r}
+timesteps <- 1:1000
+```
+
+
+Then we would need to update our compartments in the `for()` loop.
+```{r}
+dat <- NULL
+for (t in timesteps) {
+    N_t1 <- N_t - round(incidence*N_t) + round(recovery*P_t) + b*N_t + b*P_t - d*N_t
+
+    P_t1 <- P_t + round(incidence*N_t) - round(recovery*P_t) - d*P_t
+
+    dat <- rbind(dat, c(N_t1, P_t1)) 
+
+    N_t <- N_t1 
+    P_t <- P_t1 
+}
+```
+
+And plot the results:
+```{r}
+matplot(dat, xlab="time", ylab="number of people", type="l", lty = 1)
+legend("topright", col = 1:2, legend = c("no headache","headache"), lwd=1)
+```
+
+We see that we hit "headache equilibrium" rather quickly, but because our death rate is greater than our birth rate, our population is slowly dying off. Try other parameters to see what happens.
