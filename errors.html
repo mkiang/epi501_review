@@ -11,7 +11,7 @@
 
 <meta name="author" content="Mathew Kiang" />
 
-<meta name="date" content="2018-01-16" />
+<meta name="date" content="2018-01-29" />
 
 <title>Common Error Messages</title>
 
@@ -121,12 +121,15 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Common Error Messages</h1>
 <h4 class="author"><em>Mathew Kiang</em></h4>
-<h4 class="date"><em>January 16, 2018</em></h4>
+<h4 class="date"><em>January 29, 2018</em></h4>
 
 </div>
 
 <div id="TOC">
 <ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#my-plots-dont-show-up-in-the-plots-pane">My plots don’t show up in the Plots pane</a></li>
+<li><a href="#nothing-happens-when-i-run-a-command-in-rstudio">Nothing happens when I run a command in RStudio</a></li>
 <li><a href="#there-is-no-package-called-desolve"><code>there is no package called ‘deSolve’</code></a></li>
 <li><a href="#could-not-find-function-ode"><code>could not find function &quot;ode&quot;</code></a></li>
 <li><a href="#object-e-not-found"><code>object 'E' not found</code></a></li>
@@ -139,40 +142,52 @@ $(document).ready(function () {
 </ul>
 </div>
 
-<div id="there-is-no-package-called-desolve" class="section level1">
-<h1><code>there is no package called ‘deSolve’</code></h1>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>This is just a page where I’ll keep track of common <code>R</code> issues students run into. If you have suggestions, please email me or post a discussion on Canvas. If you’re looking for slides/annotated code, go <a href="https://mkiang.github.io/epi501_review/">back to the main page</a>.</p>
+</div>
+<div id="my-plots-dont-show-up-in-the-plots-pane" class="section level2">
+<h2>My plots don’t show up in the Plots pane</h2>
+<p>I know this sounds dumb, but try resizing your RStudio window or clicking on the “Zoom” button above the plot pane (lower right). Windows sometimes won’t render plots that are larger than the viewport.</p>
+</div>
+<div id="nothing-happens-when-i-run-a-command-in-rstudio" class="section level2">
+<h2>Nothing happens when I run a command in RStudio</h2>
+<p>When you look at the Console pane (lower left), is the cursor an angle bracket (<code>&gt;</code>) or a plus (<code>+</code>)? If it is a plus, your console is waiting for more commands (i.e., you might have forgotten to close a parenthesis) — just hit <code>Esc</code> twice and try again. The console should show an angle bracket when it has completed running commands.</p>
+</div>
+<div id="there-is-no-package-called-desolve" class="section level2">
+<h2><code>there is no package called ‘deSolve’</code></h2>
 <p>You need to install the <code>deSolve</code> package by running the command <code>install.packages(&quot;deSolve&quot;)</code>.</p>
 </div>
-<div id="could-not-find-function-ode" class="section level1">
-<h1><code>could not find function &quot;ode&quot;</code></h1>
+<div id="could-not-find-function-ode" class="section level2">
+<h2><code>could not find function &quot;ode&quot;</code></h2>
 <p>You need to load the <code>deSolve</code> package by running the command <code>library(deSolve)</code>.</p>
 </div>
-<div id="object-e-not-found" class="section level1">
-<h1><code>object 'E' not found</code></h1>
+<div id="object-e-not-found" class="section level2">
+<h2><code>object 'E' not found</code></h2>
 <p>You’re trying to use an object that does not yet exist. If it is a compartment (<code>S</code>, <code>E</code>, <code>I</code>, <code>R</code>, etc.), you have likely forgotten to change your initial values to include this compartment.</p>
 </div>
-<div id="unexpected-symbol-in-..." class="section level1">
-<h1><code>unexpected symbol in ...</code></h1>
+<div id="unexpected-symbol-in-..." class="section level2">
+<h2><code>unexpected symbol in ...</code></h2>
 <p>Your command is most likely missing a comma or some other separator. Check the command that is specified again. For example: <code>Error: unexpected symbol in &quot;inits &lt;- c(S = 999999, E = 0 I&quot;</code> is missing a comma before the <code>I</code>.</p>
 </div>
-<div id="undefined-columns-selected" class="section level1">
-<h1><code>undefined columns selected</code></h1>
+<div id="undefined-columns-selected" class="section level2">
+<h2><code>undefined columns selected</code></h2>
 <p>You are trying to call a column that does not exist. Check your subsetting that the columns you are trying to call either by slicing (e.g., <code>df[, 1:5]</code>) or by name (e.g., <code>df$I</code>) actually exist in the object.</p>
 </div>
-<div id="youre-missing-lines-in-your-matplot" class="section level1">
-<h1>You’re missing lines in your <code>matplot()</code></h1>
+<div id="youre-missing-lines-in-your-matplot" class="section level2">
+<h2>You’re missing lines in your <code>matplot()</code></h2>
 <p>Check to make sure your <code>y =</code> argument includes all columns you intended.</p>
 </div>
-<div id="your-matplot-lines-are-weird-i.e.-dotted-dashed-etc." class="section level1">
-<h1>Your <code>matplot()</code> lines are weird (i.e., dotted, dashed, etc.)</h1>
+<div id="your-matplot-lines-are-weird-i.e.-dotted-dashed-etc." class="section level2">
+<h2>Your <code>matplot()</code> lines are weird (i.e., dotted, dashed, etc.)</h2>
 <p>Check to make sure you specified the <code>l</code>ine<code>ty</code>pe you wanted with the <code>lty = 1</code> argument.</p>
 </div>
-<div id="your-plot-has-just-a-line-on-top-and-a-line-on-the-bottom" class="section level1">
-<h1>Your plot has just a line on top and a line on the bottom</h1>
+<div id="your-plot-has-just-a-line-on-top-and-a-line-on-the-bottom" class="section level2">
+<h2>Your plot has just a line on top and a line on the bottom</h2>
 <p>Your timescale and parameters likely do not make sense. Check that your rates (relative to your timescale) are correct. Also check that you’re running it for long enough and using small enough increments.</p>
 </div>
-<div id="the-number-of-derivatives-returned..." class="section level1">
-<h1><code>The number of derivatives returned...</code></h1>
+<div id="the-number-of-derivatives-returned..." class="section level2">
+<h2><code>The number of derivatives returned...</code></h2>
 <p>You may have forgotten to return one of your compartments. Check that your model function returns the same number of objects as compartments. For example, <code>der &lt;- c(dS, dI, dR))</code> with <code>inits &lt;- list(S = 999, E = 0, I = 1, R = 0)</code> won’t work because you’re specifying four initial compartments, but only returning three.</p>
 </div>
 

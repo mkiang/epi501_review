@@ -10,29 +10,38 @@ output:
     number_sections: false
 ---
 
-# `there is no package called ‘deSolve’`
+## Introduction
+This is just a page where I'll keep track of common `R` issues students run into. If you have suggestions, please email me or post a discussion on Canvas. If you're looking for slides/annotated code, go [back to the main page](https://mkiang.github.io/epi501_review/).
+
+## My plots don't show up in the Plots pane
+I know this sounds dumb, but try resizing your RStudio window or clicking on the "Zoom" button above the plot pane (lower right). Windows sometimes won't render plots that are larger than the viewport. 
+
+## Nothing happens when I run a command in RStudio
+When you look at the Console pane (lower left), is the cursor an angle bracket (`>`) or a plus (`+`)? If it is a plus, your console is waiting for more commands (i.e., you might have forgotten to close a parenthesis) --- just hit `Esc` twice and try again. The console should show an angle bracket when it has completed running commands. 
+
+## `there is no package called ‘deSolve’`
 You need to install the `deSolve` package by running the command `install.packages("deSolve")`.
 
-# `could not find function "ode"`
+## `could not find function "ode"`
 You need to load the `deSolve` package by running the command `library(deSolve)`.
 
-# `object 'E' not found`
+## `object 'E' not found`
 You're trying to use an object that does not yet exist. If it is a compartment (`S`, `E`, `I`, `R`, etc.), you have likely forgotten to change your initial values to include this compartment.
 
-# `unexpected symbol in ...`
+## `unexpected symbol in ...`
 Your command is most likely missing a comma or some other separator. Check the command that is specified again. For example: `Error: unexpected symbol in "inits <- c(S = 999999, E = 0 I"` is missing a comma before the `I`.
 
-# `undefined columns selected`
+## `undefined columns selected`
 You are trying to call a column that does not exist. Check your subsetting that the columns you are trying to call either by slicing (e.g., `df[, 1:5]`) or by name (e.g., `df$I`) actually exist in the object.
 
-# You're missing lines in your `matplot()`
+## You're missing lines in your `matplot()`
 Check to make sure your `y = ` argument includes all columns you intended.
 
-# Your `matplot()` lines are weird (i.e., dotted, dashed, etc.)
+## Your `matplot()` lines are weird (i.e., dotted, dashed, etc.)
 Check to make sure you specified the `l`ine`ty`pe you wanted with the `lty = 1` argument.
 
-# Your plot has just a line on top and a line on the bottom
+## Your plot has just a line on top and a line on the bottom
 Your timescale and parameters likely do not make sense. Check that your rates (relative to your timescale) are correct. Also check that you're running it for long enough and using small enough increments.
 
-# `The number of derivatives returned...`
+## `The number of derivatives returned...`
 You may have forgotten to return one of your compartments. Check that your model function returns the same number of objects as compartments. For example, `der <- c(dS, dI, dR))` with `inits <- list(S = 999, E = 0, I = 1, R = 0)` won't work because you're specifying four initial compartments, but only returning three.
