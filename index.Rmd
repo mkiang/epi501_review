@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 - [**Common Error Messages**](./errors.html)
 
 - Week 1 (January 22, 2018)
+    - [Introduction to ODE models in `R`](./20180129_intro_odes/index.html)
     - [Introduction to `R`, discrete time models, non-infectious ODE models.](./20180124_intro_to_R_headaches/index.html) 
     - Download [`headache_exercises.zip`](./exercises/01_headaches/headache_exercises.zip)
         - Or download the code here (not recommended):
