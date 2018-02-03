@@ -1,33 +1,8 @@
 phantom <- "~/decktape-1.0.0/phantomjs "
 decktape <- "~/decktape-1.0.0/decktape.js "
-working_dir <- "~/Dropbox/Work/epi501_ta/epi501_review/"
+working_dir <- "~/Dropbox/epi501_review/"
 
-## Print PDF of intro slides
+## Print PDF of intro to ODEs
 system(paste0(phantom, decktape, 
-              working_dir, "jan27-intro-to-odes/index.html ", 
-              working_dir, "jan27-intro-to-odes/jan27-intro-to-r.pdf"))
-
-## Print PDF of measles
-system(paste0(phantom, decktape, 
-              working_dir, "jan30-timesteps-measles-seir/index.html ", 
-              working_dir, "jan30-timesteps-measles-seir/measles-handout.pdf"))
-
-## Print PDF of ebola
-system(paste0(phantom, decktape, 
-              working_dir, "feb-1-ebola/index.html ", 
-              working_dir, "feb-1-ebola/ebola-handout.pdf"))
-
-## Networks
-system(paste0(phantom, decktape, 
-              working_dir, "feb-17-networks/index.html ", 
-              working_dir, "feb-17-networks/networks-handout.pdf"))
-
-## Networks part 2
-system(paste0(phantom, decktape, 
-              working_dir, "mar-6-networks/index.html ", 
-              working_dir, "mar-6-networks/contact-networks-handout.pdf"))
-
-## Final review
-system(paste0(phantom, decktape, 
-              working_dir, "mar-6-review/index.html ", 
-              working_dir, "mar-6-review/final-review.pdf"))
+              working_dir, "20180129_intro_odes/index.html ", 
+              working_dir, "20180129_intro_odes/20180129-intro-odes.pdf"))
