@@ -745,7 +745,7 @@ SI <- function(t, x, parms){
     with(as.list(c(parms, x)), {
 
 {{       N <- S + I }}
-        dS <- - (beta * k * S * I) / N}}
+{{       dS <- - (beta * k * S * I) / N}}
 {{       dI <- + (beta * k * S * I) / N}}
 {{ }}
     
