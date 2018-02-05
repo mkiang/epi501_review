@@ -14,6 +14,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - Week 2 (January 29, 2018)
     - [Ebola and SEIR models](./20180202_ebola/index.html) [[PDF](./20180202_ebola/20180202-ebola.pdf)] [[Code and Data Files](https://github.com/mkiang/epi501_review/tree/master/20180202_ebola/code)]
+        - [SEIR model with case fatality ratio](./20180202_ebola/index.html#3)
+        - [Plotting SEIR lines](./20180202_ebola/index.html#11)
+        - [COunting total cases and total deaths](./20180202_ebola/index.html#13)
+        - [Time-varying transmission](./20180202_ebola/index.html#18)
+        - [Calculate changing $R_0$](./20180202_ebola/index.html#30)
+        - [Time-varying beta](./20180202_ebola/index.html#38)
 
 - Week 1 (January 22, 2018)
     - [Introduction to ODE models in `R`](./20180129_intro_odes/index.html) [[PDF](./20180129_intro_odes/20180129-intro-odes.pdf)] [[Code Files](https://github.com/mkiang/epi501_review/tree/master/20180129_intro_odes/code)]
