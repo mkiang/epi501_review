@@ -6,3 +6,8 @@ working_dir <- "~/Dropbox/epi501_review/"
 system(paste0(phantom, decktape, 
               working_dir, "20180129_intro_odes/index.html ", 
               working_dir, "20180129_intro_odes/20180129-intro-odes.pdf"))
+
+## Print Ebola slides
+system(paste0(phantom, decktape, 
+              working_dir, "20180202_ebola/index.html ", 
+              working_dir, "20180202_ebola/20180202-ebola.pdf"))

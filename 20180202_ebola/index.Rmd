@@ -1,6 +1,5 @@
 ---
 title: "Ebola Worksheet"
-subtitle: "From Wednesday lecture -- But Slower"
 author: "Mathew Kiang"
 date: "2/2/2018"
 output:
