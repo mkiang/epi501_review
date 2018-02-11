@@ -1,0 +1,154 @@
+---
+title: "Time-varying transmission and ebola dynamics"
+output: 
+  html_notebook:
+    toc: true
+---
+
+## Introduction
+
+In Friday, we discussed time-varying transmission and a few people had a couple questions. 
+
+1. What is the impact of changing $\tau$ (i.e., when we start the intervention and thus the time-varying $\beta$ takes effect)? 
+1. What is the impact of changing the decay of the transmission rate? This notebook will just quickly show you what happens to both. 
+
+I'm assuming you've already gone through and done [the ebola slides and worksheet](https://mkiang.github.io/epi501_review/20180202_ebola/index.html#1). If you haven't, please do those first, or this page probably won't be very helpful to you.
+
+## Setup
+Let's load `deSolve` and create initial populations and a time sequence. 
+
+```{r}
+## Load libraries
+library(deSolve)
+
+## Set a time sequence for one year in time steps of one day
+dt <- seq(0, 365, 1) 
+
+## Set some initial values
+inits_alt1 <- c(S = 999999,E = 0, I = 1, R = 0, C = 0, D = 0) 
+```
+
+## Make the model
+
+This is a modified version of the `SEIR_alt2` model we made in lab. Recall that in the previous model, we assumed `tau` was equal to 0 (i.e., intervention began immediately). In this model, I'm going to add an `if()` statement that just says to use `B_init` as our $\beta$ value until we hit time == `tau`, then start the time-varying transmission.
+
+```{r}
+SEIR_alt3 <- function(t, x, parms) {
+    with(as.list(c(parms, x)), {
+        
+        if ( (t - 1) >= tau) {
+            B  <- B_init * exp(-k * t)
+        } else {
+            B  <- B_init
+        }
+        
+        N  <- S + E + I + R
+        dS <- -(B * S * I) / N 
+        dE <- +(B * S * I) / N - (s * E) 
+        dI <- (s * E) - (g * I) 
+        dR <- (1 - f) * (g * I) 
+        
+        dC <- s * E
+        dD <- f * g * I
+        
+        der <- c(dS, dE, dI, dR, dC, dD)
+        
+        return(list(der))
+    }) 
+}
+```
+
+## Question 1: What happens when we change `tau`?
+### Now loop through `tau`
+
+Now, let's just loop through 11 values of `tau` from 0 to 100 by steps of ten. Then we will collect the **infected** column because we don't really care about the other compartments for this exercise. 
+
+```{r}
+## Cycle through different values of tau
+taus <- seq(0, 100, 10)
+
+for (tau in taus) {
+    parms_loop <- c(B_init = 0.45,   # Initial transmission prob * avg num contacts
+                    s = 1/5.3,       # Transition rate from E to I
+                    g = 1/5.61,      # Recover rate -- I to R
+                    f = 0.6,         # Case fatality ratio
+                    k = 0.0097,      # decay of transmission rate
+                    tau = tau)       # How many days to delay intervention
+    
+    temp_holder <- as.data.frame(ode(inits_alt1, dt, SEIR_alt3, 
+                                     parms = parms_loop))
+    
+    if (tau == 0) {
+        tau_holder <- temp_holder[, c(1, 4)]
+    } else {
+        tau_holder <- cbind(tau_holder, tau = temp_holder[, 4])
+    }
+}
+```
+
+Test yourself. What is in the matrix `tau_holder`?
+
+```{r}
+head(tau_holder, 10)
+```
+
+### Plot it
+
+Test yourself again. Intuitively, what do we expect to have happened to the infectious curve after we delay intervention? Will it shift left or right? Will the peak be higher or lower? Will the impact be linear or exponential?
+
+```{r fig.height=3.25, fig.width=5}
+matplot(tau_holder[, 1], tau_holder[, -1], lty = 1, type = "l", 
+        ylab = "Infectious People", xlab= "Time (days)", col = 1:11)
+legend("topright", title = "tau", legend = seq(0, 100, 10), 
+       lty = 1, col = 1:11)
+```
+
+It's clear that delaying intervention can have a huge impact on the dynamics in this model and that this impact is nonlinear, suggesting that while an immediate intervention may not be possible, acting quickly is vital.
+
+## Question 2: What happens when we change the decay (`k`)?
+
+Now, let's assume we always intervene immediately (`tau = 0`), what is the impact of our decay factor `k`?
+
+### Loop through different values of `k`.
+
+```{r}
+orig_k <- .0097
+
+## Cycle through different values of k
+ks <- seq(orig_k - .0025,
+          orig_k + .0025, 
+          .0005)
+ 
+for (k in ks) {
+    parms_loop <- c(B_init = 0.45,   # Initial transmission prob * avg num contacts
+                    s = 1/5.3,       # Transition rate from E to I
+                    g = 1/5.61,      # Recover rate -- I to R
+                    f = 0.6,         # Case fatality ratio
+                    k = k,           # decay of transmission rate
+                    tau = 0)         # How many days to delay intervention
+    
+    temp_holder <- as.data.frame(ode(inits_alt1, dt, SEIR_alt3, 
+                                     parms = parms_loop))
+    
+    if (k == min(ks)) {
+        k_holder <- temp_holder[, c(1, 4)]
+    } else {
+        k_holder <- cbind(k_holder, k = temp_holder[, 4])
+    }
+}
+```
+
+### Plot it
+
+Again, what do you expect to happen? Will the curve shift left or right? Up or down? Linearly or nonlinearly? 
+
+```{r fig.height=3.25, fig.width=5}
+matplot(k_holder[, 1], k_holder[, -1], lty = 1, type = "l", 
+        ylab = "Infectious People", xlab= "Time (days)", col = 1:11)
+legend("topright", title = "k", legend = ks, 
+       lty = 1, col = 1:11)
+```
+
+## Conclusion
+
+Hopefully, this helps answer your questions about the time-varying transmission model. More importantly, I hope it helps you see why this class is done using `R`. Exploring the effect of a range of parameters is quite straight-forward in `R` and makes understanding (highly unintuitive) dynamical models a little easier. 
