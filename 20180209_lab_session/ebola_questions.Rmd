@@ -7,19 +7,19 @@ output:
 
 ## Introduction
 
-On Friday, we discussed time-varying transmission and a few people had a couple questions. 
+On Friday, we discussed time-varying transmission and we ran out of time for a couple remaining questions:  
 
 1. What is the impact of changing $\tau$ (i.e., when we start the intervention and thus the time-varying $\beta$ takes effect)? 
-1. What is the impact of changing the decay of the transmission rate? This notebook will just quickly show you what happens to both. 
+1. What is the impact of changing the decay of the transmission rate (`k`)? 
 
-I'm assuming you've already gone through and done [the ebola slides and worksheet](https://mkiang.github.io/epi501_review/20180202_ebola/index.html#1). If you haven't, please do those first, or this page probably won't be very helpful to you.
+This notebook will just quickly show you what happens to both. I'm assuming you've already gone through and done [the ebola slides and worksheet](https://mkiang.github.io/epi501_review/20180202_ebola/index.html#1). If you haven't, please do those first, or this page probably won't be very helpful to you.
 
-Before we get started, recall that we used an SEIR model because we believe *a priori* that the latent period of ebola is important to disease dynamics. The general rule of thumb is that if the latent period is of the same order as the infectious period, it plays an important role (by removing people from the susceptible population). 
+Before we get started, recall that we use an SEIR model because we believe *a priori* that the latent period of ebola is important to its dynamics. The general rule of thumb is that if the latent period is of the same order of magnitude as the infectious period, it plays an important role (by removing people from the susceptible population). 
 
-While when to use a latent period is a judgment call, it is important you can justify your decision either way. Play with this [interactive ODE app](https://mkiang.shinyapps.io/DiseaseDynamics/) and see how changing latent duration (vs infectious duration) affects the dynamics of a disease.
+While *when* to use a latent period is a judgment call, it is important you can *always justify* your decision. Play with this [interactive ODE app](https://mkiang.shinyapps.io/DiseaseDynamics/) and see how changing the latent duration (relative to the infectious duration) affects the dynamics of a disease.
 
 ## Setup
-Let's load `deSolve` and create initial populations and a time sequence. 
+Let's load `deSolve`, create initial populations, and a time sequence.
 
 ```{r}
 ## Load libraries
@@ -34,7 +34,7 @@ inits_alt1 <- c(S = 999999,E = 0, I = 1, R = 0, C = 0, D = 0)
 
 ## Make the model
 
-This is a modified version of the `SEIR_alt2` model we made in lab. Recall that in the previous model, we assumed `tau` was equal to 0 (i.e., intervention began immediately). In this model, I'm going to add an `if()` statement that just says to use `B_init` as our $\beta$ value until we hit time == `tau`, then start the time-varying transmission.
+This is a modified version of the `SEIR_alt2` model we made in lab. Recall that in the previous model, we assumed `tau` was equal to 0 (i.e., intervention began immediately) and so we did not include it in our model. In this model, I'm going to add an `if()` statement that says to use `B_init` as our $\beta$ value until we hit time == `tau`, then start the time-varying transmission.[^1]
 
 ```{r}
 SEIR_alt3 <- function(t, x, parms) {
@@ -155,4 +155,7 @@ legend("topright", title = "k", legend = ks,
 
 ## Conclusion
 
-Hopefully, this helps answer your questions about the time-varying transmission model. More importantly, I hope it helps you see why this class is done using `R`. Exploring the effect of a range of parameters is quite straight-forward in `R` and makes understanding (highly unintuitive) dynamical models a little easier. 
+Hopefully, this helps answer your questions about the time-varying transmission model. More importantly, I hope it helps you see why this class uses `R`. Exploring the effect of a range of parameters is quite straight-forward in `R` and makes understanding (highly unintuitive) dynamical models a little easier. 
+
+## Footnotes
+[^1]: Ignore the `- 1` for now. Our first time step is 1 and we want `tau == 0` to reflect time step == 1 so we offset it.
