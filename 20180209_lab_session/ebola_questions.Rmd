@@ -14,6 +14,8 @@ In Friday, we discussed time-varying transmission and a few people had a couple 
 
 I'm assuming you've already gone through and done [the ebola slides and worksheet](https://mkiang.github.io/epi501_review/20180202_ebola/index.html#1). If you haven't, please do those first, or this page probably won't be very helpful to you.
 
+Before we get started, recall that we used an SEIR model because we believe *a priori* that the latent period of ebola is important to disease dynamics. The general rule of thumb is that if the latent period is on the same order as the infectious period, it plays an important role (by removing people from the susceptible population). While when to use a latent period is a judgment call, it is important you can justify your decision either way. Play with this [interactive ODE app](https://mkiang.shinyapps.io/DiseaseDynamics/) and see how changing latent duration (vs infectious duration) affects the dynamics of a disease.
+
 ## Setup
 Let's load `deSolve` and create initial populations and a time sequence. 
 
