@@ -1,0 +1,135 @@
+---
+title: "Indexing Things in R"
+author: "Mathew Kiang"
+date: "2/1/2018"
+output: 
+  html_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+`R` has several ways of referring to parts of a data structure. They're all useful in different ways, but this process can be a bit confusing at first. Here is a set of references for indexing different data structures using different methods.
+
+## Indexing a vector
+
+You have some vector called `letter` which contains the (lowercase) letters of the alphabet.
+
+```{r}
+print(letters)
+```
+
+### By position
+
+You can get the a single element by referring to its position (starting at 1). For example:
+
+```{r}
+print(letters[3])
+```
+
+You can refer multiple elements by passing a vector of their position. A continuous subset of elements is called a"slice" and the easiest way to slice something is to use the colon (`:`) operator. Here, we take the third to tenth letter, inclusive.
+
+```{r}
+print(letters[3:10])
+```
+
+The order of your indices matters. If I reverse the slice above, I get the same elements in reverse.
+
+```{r}
+print(letters[10:3])
+```
+
+You don't have to use slices. You can specify any subset of elements --- even the same one multiple times.
+
+```{r}
+print(letters[c(3, 3, 3, 3)])
+```
+
+```{r}
+print(letters[c(13, 1, 20, 20)])
+```
+
+Note that above I used a single bracket (`[`). You can also use a double bracket ('[[`) when you are interested in only a single element. 
+
+```{r}
+print(letters[[3]])
+```
+
+### By Boolean vector
+
+You can subset by providing a vector of logical values (`TRUE`/`FALSE`). If this indexing vector is shorter than the obect you are subsetting, it will get repeated. For example, suppse you want every third letter of the alphabet.
+
+```{r}
+print(letters[c(FALSE, FALSE, TRUE)])
+```
+
+This is useful when you don' tknow an element's position, but you are interested in some sort of rule. For example, you want all elements after "r":
+
+```{r}
+print(letters[letters > "r"])
+```
+
+Why does this work? Because `letters > "r"` returns a boolean vector:
+```{r}
+letters > "r"
+```
+
+### By removal
+
+Negative indices indicate elements you want to *remove* from object. Note this is not typical of other programming languages (where negative means you are counting from the end). We can remove `c` by using a negative index.
+
+```{r}
+print(letters[-3])
+```
+
+### Getting the minimum/maximum/last element of a vector
+
+Three common operations are extracting the maximum, minimum, or last object from an object. We can do that with `which.max()`, `which.min()`, and `length()`, respectively. Suppose you have a vector `nums` with some random set of integers.
+
+```{r}
+set.seed(1)
+nums <- sample.int(20)
+print(nums)
+```
+
+You can use the functions above to extract the element of interest. For example, the position of the maximum element is:
+
+```{r}
+which.max(nums)
+```
+
+We can use this to now index our original vector:
+
+```{r}
+nums[which.max(nums)]
+```
+
+`which()` is a general form:
+
+```{r}
+which(nums == 10)
+```
+
+
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Indexing lists in <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a>. Inspired by the Residence Inn <a href="http://t.co/YQ6axb2w7t">pic.twitter.com/YQ6axb2w7t</a></p>&mdash; Hadley Wickham (@hadleywickham) <a href="https://twitter.com/hadleywickham/status/643381054758363136?ref_src=twsrc%5Etfw">September 14, 2015</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

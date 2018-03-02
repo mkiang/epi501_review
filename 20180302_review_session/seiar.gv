@@ -1,0 +1,15 @@
+graph {
+
+    # a 'graph' statement
+    graph [overlap = true, fontsize = 10]
+    
+    # several 'node' statements
+    node [shape = box,
+    fontname = Helvetica]
+    S; E; I; A; R
+    
+    # several 'edge' statements
+    edge
+    S->E; E->I; I->A; A->R; R->S
+
+}

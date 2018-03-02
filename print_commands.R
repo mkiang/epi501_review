@@ -11,3 +11,8 @@ system(paste0(phantom, decktape,
 system(paste0(phantom, decktape, 
               working_dir, "20180202_ebola/index.html ", 
               working_dir, "20180202_ebola/20180202-ebola.pdf"))
+
+## Print Final slides
+system(paste0(phantom, decktape, 
+              working_dir, "20180302_review_session/index.html ", 
+              working_dir, "20180302_review_session/review_slides.pdf"))

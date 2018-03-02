@@ -12,6 +12,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Table of Contents (reverse chronological)
 - [**Common Error Messages**](./errors.html)
 
+- Final Review (March 2, 2018)
+    - [Slides for final review](./20180302_review_session/index.html) [[PDF]](./20180302_review_session/review_slides.pdf)
+        - [Tips](./20180302_review_session/index.html#3)
+        - [$R_0$ review](./20180302_review_session/index.html#5)
+        - [Practice Exam (Part A)](./20180302_review_session/index.html#22)
+        - [Practice Exam (Part B)](./20180302_review_session/index.html#52)
+        - [Quick note about deterministic models](./20180302_review_session/index.html#73)
+    - A [simulation showing impact of latent period](./20180302_review_session/impact_of_latent.nb.html) on your infectious curve
 - Week 3 (Februrary 9, 2018)
     - Review session: 
         - Went over Week 1 and Week 2 slides in class, line-by-line. Please review those if you didn't attend the lab.

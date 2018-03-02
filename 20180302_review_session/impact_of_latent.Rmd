@@ -1,0 +1,118 @@
+---
+title: "Understanding the impact of latent periods in SEIR models"
+output: html_notebook
+---
+
+## Introduction
+
+One question that has come up a lot this semester is, "*When* do you need to include a latent ($E$) compartment in your dynamical model?"
+
+The short answer is when the duration of the latent period about the same magnitude as the duration of the infectious period or when it is a "significant" amount of time. What that actually means really depends on your question and your model. This notebook is just a brief but systematic look at how changing your latent period affects the dynamics of a disease.
+
+## The basic SEIR model
+
+For this, let's assume there are no deaths, no births, and no recovery. That is, our model can be written as:
+
+$$
+\begin{aligned}
+\frac{dS}{dt} &= - \beta S I \\
+\frac{dE}{dt} &= \beta S I - \alpha E \\
+\frac{dI}{dt} &= \alpha E - \gamma I \\
+\frac{dR}{dt} &= \gamma I
+\end{aligned}
+$$
+
+Like all models in this class, assume the parameters are exponentially distributed so the average time in any compartment is the inverse of the rate out of the compartment. That is, the the duration of incubation is $\frac{1}{\alpha}$ and duration of infectiousness is $\frac{1}{\gamma}$.
+
+## Simulation set up
+
+Given the above, let's see what happens we vary $\alpha$ and $\gamma$ while fixing $\beta$ and expressing all compartments as proportions.
+
+### Define our model in `R`
+
+```{r, message=FALSE, warning=FALSE, results="hide"}
+library(deSolve)
+library(tidyverse)
+
+SEIR <- function(t, x, parms){
+    with(as.list(c(parms, x)), {
+        
+        dS <- -(beta * S * I) 
+        dE <- +(beta * S * I) - (a * E)
+        dI <- +(a * E) - (g * I)
+        dR <- +(g * I)
+        
+        der <- c(dS, dE, dI, dR)
+        
+        return(list(der))
+    }) 
+}
+```
+
+
+### Duration of incubation and infectious periods
+
+Let's try different length infectious periods. Specifically, let's set $\alpha \in \{0.05, 0.1, 0.2, 0.5, 0.99\}$, which corresponds to durations of infectiousness of $\{20, 10, 5, 2, 1\}$ time units. For each infectious period, we will also vary the duration of the incubation period as a proportion of the infectious period. For example, let's set the proportions of the incubation period to be $\{0.0001, 0.1, 0.5, 1, 2\}$, which means for an infectious period of 20 days ($\alpha = 0.05$), we will run the simulation with incubation periods of $\{\approx0, 2, 10, 20, 40\}$ days.
+
+```{r}
+alphas <- c(.05, .1, .2, .5, .99)
+gamma_props = c(.0001, .1, .5, 1, 2)
+```
+
+
+```{r}
+dt <- seq(0, 1000, 1)
+inits <- c(S = (10^6 - 1)/10^6, 
+           E = 0, 
+           I = 1/10^6, 
+           R = 0)
+
+holder <- NULL
+
+for (alpha in alphas) {
+    for (g_prop in gamma_props) {
+        gamma <- g_prop * alpha
+        
+        parms <- c(beta = 3, a = alpha, g = gamma)
+        
+        simulation <- as.data.frame(ode(y = inits, times = dt, 
+                                func = SEIR, parms = parms))
+        
+        holder <- rbind(holder, cbind(t = simulation[, "time"], 
+                                      infected = simulation[, "I"], 
+                                      alpha = alpha, g_prop = g_prop))
+    }
+    
+}
+```
+
+We now have an object which contains the infectious curve for all 25 combinations of infectious period and incubation periods.
+
+We can plot it like so:
+
+```{r}
+holder <- holder %>% 
+    as_tibble() %>% 
+    mutate(infectious_duration = round(1/alpha, 0))
+
+ggplot(holder, aes(x = t, y = infected)) + 
+    geom_line() + 
+    facet_grid(infectious_duration ~ g_prop) + 
+    scale_x_continuous(limits = c(0, 100)) + 
+    theme_minimal() + 
+    labs(x = "Time", y = "Proportion Infected", 
+         title = "Infectious curves for various infectious and incubation periods")
+```
+
+Each panel represents some instance of $\alpha$ and $\gamma$ from our sets. Each row is one set of infectious periods (i.e., the top is an infecitous period of 1 day, the bottom is 20 days). The columns show the changing incubation periods as a proportion of the infectious periods. 
+
+If you focus on any row and go from left to right, you can see that as the latent period gets longer (relative to the infectious period), the epidemic peak (maximum number of infected) gets lower *and* a little more delayed. 
+
+If you focus on any column, you can see that as you increase the duration of infectiousness, the epidemic peak is shifted to the right (because we are also increasing the amount of time they stay in the latent period). 
+
+## Take home
+
+Latent periods matter as they become longer relative to your infectious period. For latent periods lasting $\lt 10\%$ of the infectious period, modelers will often leave it out for simplicity. You should almost certainly include it if it is greater than that though.
+
+
+
