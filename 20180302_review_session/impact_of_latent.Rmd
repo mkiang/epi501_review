@@ -11,7 +11,7 @@ The short answer is when the duration of the latent period about the same magnit
 
 ## The basic SEIR model
 
-For this, let's assume there are no deaths, no births, and no recovery. That is, our model can be written as:
+For this, let's assume there are no deaths, no births, and lifelong immunity. That is, our model can be written as:
 
 $$
 \begin{aligned}
