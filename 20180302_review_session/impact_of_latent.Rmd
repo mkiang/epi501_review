@@ -22,7 +22,7 @@ $$
 \end{aligned}
 $$
 
-Like all models in this class, assume the parameters are exponentially distributed so the average time in any compartment is the inverse of the rate out of the compartment. That is, the the duration of incubation is $\frac{1}{\alpha}$ and duration of infectiousness is $\frac{1}{\gamma}$.
+Like all models in this class, assume the parameters are exponentially distributed so the average time in any compartment is the inverse of the rate out of the compartment. That is, the duration of incubation is $\frac{1}{\alpha}$ and duration of infectiousness is $\frac{1}{\gamma}$.
 
 ## Simulation set up
 
@@ -52,7 +52,7 @@ SEIR <- function(t, x, parms){
 
 ### Duration of incubation and infectious periods
 
-Let's try different length infectious periods. Specifically, let's set $\alpha \in \{0.05, 0.1, 0.2, 0.5, 0.99\}$, which corresponds to durations of infectiousness of $\{20, 10, 5, 2, 1\}$ time units. For each infectious period, we will also vary the duration of the incubation period as a proportion of the infectious period. For example, let's set the proportions of the incubation period to be $\{0.0001, 0.1, 0.5, 1, 2\}$, which means for an infectious period of 20 days ($\alpha = 0.05$), we will run the simulation with incubation periods of $\{\approx0, 2, 10, 20, 40\}$ days.
+Let's try different length infectious periods. Specifically, let's set $\alpha \in \{0.05, 0.1, 0.2, 0.5, 0.99\}$, which corresponds to durations of infectiousness of $\{20, 10, 5, 2, 1\}$ time units. For each infectious period, we will also vary the duration of the incubation period as a ratio of the infectious period. For example, let's set the ratios of the incubation period to be $\{0.0001, 0.1, 0.5, 1, 2\}$, which means for an infectious period of 20 days ($\alpha = 0.05$), we will run the simulation with incubation periods of $\{\approx0, 2, 10, 20, 40\}$ days.
 
 ```{r}
 alphas <- c(.05, .1, .2, .5, .99)
@@ -104,11 +104,11 @@ ggplot(holder, aes(x = t, y = infected)) +
          title = "Infectious curves for various infectious and incubation periods")
 ```
 
-Each panel represents some instance of $\alpha$ and $\gamma$ from our sets. Each row is one set of infectious periods (i.e., the top is an infecitous period of 1 day, the bottom is 20 days). The columns show the changing incubation periods as a proportion of the infectious periods. 
+Each panel represents some instance of $\alpha$ and $\gamma$ from our sets. Each row is one set of infectious periods (i.e., the top is an infecitous period of 1 day, the bottom is 20 days). The columns show the changing incubation periods as a ratios of the infectious periods. 
 
 If you focus on any row and go from left to right, you can see that as the latent period gets longer (relative to the infectious period), the epidemic peak (maximum number of infected) gets lower *and* a little more delayed. 
 
-If you focus on any column, you can see that as you increase the duration of infectiousness, the epidemic peak is shifted to the right (because we are also increasing the amount of time they stay in the latent period). 
+If you focus on any column and go top to bottom, you can see that as you increase the duration of infectiousness, the epidemic peak is shifted to the right (because we are also increasing the amount of time they stay in the latent period), and the "peak" is generally fatter because the time spent in the compartment is longer. It does not, however, seem like there is any impact on the height of the peak. 
 
 ## Take home
 
